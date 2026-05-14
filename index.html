@@ -161,6 +161,7 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 .ai-msg.bot{background:#fff;border:1px solid var(--bd);align-self:flex-start;color:var(--tx)}
 .ai-msg.user{background:#0F7A5C;color:#fff;align-self:flex-end}
 .ai-msg strong{font-weight:800;color:#8B2E14}
+.ai-msg a{color:#1A5FA8;font-weight:800;text-decoration:none;border-bottom:1px solid rgba(26,95,168,.35)}
 .ai-msg p{margin:0 0 7px}.ai-msg p:last-child{margin-bottom:0}
 .ai-msg ul{margin:4px 0 0 18px;padding:0}.ai-msg li{margin:3px 0}
 .ai-chips{display:flex;gap:6px;flex-wrap:wrap;padding:9px 10px 0;background:#fff;border-top:1px solid var(--bd)}
@@ -1257,10 +1258,10 @@ function flyTo(lat,lng,zoom){
     <div class="ai-msg bot"><p><strong>Hi.</strong> Ask me about Naples, Bari, maps, ferries, trains, food, timings, packing, or your day plan.</p></div>
   </div>
   <div class="ai-chips">
-    <button class="ai-chip" type="button" data-q="Today ka short plan batao">Today</button>
-    <button class="ai-chip" type="button" data-q="Nearest food options batao">Food</button>
+    <button class="ai-chip" type="button" data-q="Aaj ka best short plan batao">Plan</button>
+    <button class="ai-chip" type="button" data-q="Nearby food with address and map link">Food + Map</button>
     <button class="ai-chip" type="button" data-q="Bari weather">Weather</button>
-    <button class="ai-chip" type="button" data-q="Map kaise use karun?">Map</button>
+    <button class="ai-chip" type="button" data-q="Emergency numbers and nearest help">Help</button>
   </div>
   <form class="ai-form" id="aiForm">
     <input class="ai-input" id="aiInput" type="text" autocomplete="off" placeholder="Ask about your trip..." required>
@@ -1296,6 +1297,7 @@ if ('serviceWorker' in navigator) {
 
   function formatAnswer(text) {
     var safe = escapeHTML(String(text || '').trim());
+    safe = safe.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
     safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     var lines = safe.split(/\n+/);
     var html = '';
@@ -1376,6 +1378,7 @@ if ('serviceWorker' in navigator) {
           'Give longer detail only when the user explicitly asks for details, full plan, itinerary, compare, or explain.',
           'Never dump too many lines. Start with the direct answer first.',
           'Use the guide context below as the source of truth for itinerary, bookings, links, maps, day plans, places, and tips.',
+          'When the user asks for address, map, location, nearby, or how to go, include a clickable Markdown link like [Open Map](https://maps.google.com/?q=...) if present in the guide.',
           'If live information is requested, use web search when available and still tell the user which official site/app should be checked before payment or travel.',
           'For uncertain live data, say **verify** and name the official source. Do not invent exact delays, opening status, or prices.',
           'Be specific and practical. Do not say you cannot see the website; the website context is included below.',
@@ -1405,6 +1408,7 @@ if ('serviceWorker' in navigator) {
   }
 
   function findGuideMatches(question) {
+    var wantsLocation = /address|addr|map|location|where|kaha|kidhar|kaise|near|nearby|paas|jana|jaana|link/i.test(question);
     var words = question.toLowerCase().split(/[^a-z0-9]+/).filter(function (word) {
       return word.length > 3 && !/what|where|when|kaise|kya|karna|hai|mein|about|tell|plan|day/.test(word);
     });
@@ -1412,28 +1416,56 @@ if ('serviceWorker' in navigator) {
     var scored = blocks.map(function (block) {
       var text = block.innerText.replace(/\s+/g, ' ').trim();
       var lower = text.toLowerCase();
+      var titleEl = block.querySelector('h3,.tb2t,.qrt,.stl');
+      var title = titleEl ? titleEl.innerText.replace(/\s+/g, ' ').trim() : text.slice(0, 60);
+      var mapEl = block.querySelector('a[href*="maps.google"],a[href*="google.com/maps"]');
+      var siteEl = block.querySelector('a[href^="http"]:not([href*="maps.google"]):not([href*="google.com/maps"])');
+      var metaEl = block.querySelector('.pm,.rm');
+      var meta = metaEl ? metaEl.innerText.replace(/\s+/g, ' ').trim() : '';
       var score = words.reduce(function (total, word) {
         return total + (lower.indexOf(word) >= 0 ? 1 : 0);
       }, 0);
-      return { score: score, text: text };
+      if (wantsLocation && mapEl) score += 2;
+      return {
+        score: score,
+        text: text,
+        title: title,
+        meta: meta,
+        map: mapEl ? mapEl.href : '',
+        site: siteEl ? siteEl.href : ''
+      };
     }).filter(function (item) {
       return item.score > 0 && item.text.length > 20;
     }).sort(function (a, b) {
       return b.score - a.score;
-    }).slice(0, 3);
+    }).slice(0, wantsLocation ? 4 : 3);
 
     if (!scored.length) {
       return '**Not found in guide.** Try a place/topic like Naples, Bari, Capri, Procida, Matera, ferry, train, restaurant, map, or budget.';
     }
 
+    if (wantsLocation) {
+      return '**Best matches with map:**\n' + scored.map(function (item) {
+        var line = '- **' + item.title + '**';
+        if (item.meta) line += ' — ' + item.meta.slice(0, 120);
+        else line += ' — ' + item.text.slice(0, 120);
+        if (item.map) line += ' [Open Map](' + item.map + ')';
+        if (item.site) line += ' [Site](' + item.site + ')';
+        return line;
+      }).join('\n');
+    }
+
     return '**Guide matches:**\n' + scored.map(function (item) {
-      return '- ' + item.text.slice(0, 170) + (item.text.length > 170 ? '...' : '');
+      var line = '- **' + item.title + '** — ' + item.text.slice(0, 145) + (item.text.length > 145 ? '...' : '');
+      if (item.map) line += ' [Map](' + item.map + ')';
+      return line;
     }).join('\n');
   }
 
   async function answerQuestion(question) {
     if (/weather|mausam|temperature|rain|barish/i.test(question)) return getWeather(question);
     if (/eur|inr|currency|exchange|rate|rupee|euro/i.test(question)) return getCurrency();
+    if (/address|addr|map|location|where|kaha|kidhar|kaise|near|nearby|paas|jana|jaana|link/i.test(question)) return findGuideMatches(question);
     var aiAnswer = await askPuterAI(question).catch(function () { return ''; });
     if (aiAnswer && !/undefined|\[object Object\]/i.test(aiAnswer)) return aiAnswer;
     return findGuideMatches(question);

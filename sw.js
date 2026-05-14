@@ -1,4 +1,4 @@
-const CACHE_NAME = 'italy-trip-2026-v7';
+const CACHE_NAME = 'italy-trip-2026-v9';
 const CORE_ASSETS = [
   './',
   './index.html',
