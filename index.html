@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Italy Trip · May 14–24, 2026</title>
+<style>
+:root{--c:#C94B2A;--cl:#F5E8E3;--t:#0F7A5C;--tl:#E0F2EB;--a:#A86A10;--al:#FDF0D8;--b:#1A5FA8;--bl:#E5EEF9;--p:#5340B0;--pl:#EEEDFB;--g:#2E7D32;--gl:#E8F5E9;--bg:#FDFBF8;--w:#fff;--tx:#1C1C1A;--mu:#6B6B6B;--bd:#E8E5DF}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:var(--tx);font-size:15px;line-height:1.6}
+
+/* ===== PURE CSS TABS — NO JAVASCRIPT ===== */
+/* Hide radio inputs completely */
+input[name="tab"]{display:none;position:absolute;left:-9999px}
+
+/* All pages hidden by default */
+.pg{display:none}
+
+/* Show page when radio is checked */
+#r0:checked~.content #t0,
+#r1:checked~.content #t1,
+#r2:checked~.content #t2,
+#r3:checked~.content #t3,
+#r4:checked~.content #t4,
+#r5:checked~.content #t5,
+#r6:checked~.content #t6,
+#r7:checked~.content #t7,
+#r8:checked~.content #t8,
+#r9:checked~.content #t9,
+#r10:checked~.content #t10,
+#r11:checked~.content #t11{display:block}
+
+/* Active tab label styling */
+#r0:checked~.nav label[for="r0"],
+#r1:checked~.nav label[for="r1"],
+#r2:checked~.nav label[for="r2"],
+#r3:checked~.nav label[for="r3"],
+#r4:checked~.nav label[for="r4"],
+#r5:checked~.nav label[for="r5"],
+#r6:checked~.nav label[for="r6"],
+#r7:checked~.nav label[for="r7"],
+#r8:checked~.nav label[for="r8"],
+#r9:checked~.nav label[for="r9"],
+#r10:checked~.nav label[for="r10"],
+#r11:checked~.nav label[for="r11"]{background:var(--c);color:#fff;border-color:var(--c)}
+/* ===== END CSS TABS ===== */
+
+/* HERO */
+.hero{background:linear-gradient(160deg,#C94B2A,#7A2010 45%,#1A3A6B);color:#fff;padding:30px 18px 22px;overflow:hidden;position:relative}
+.hero::before{content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,0.05)}
+.hbadge{display:inline-block;background:rgba(255,255,255,0.18);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;margin-bottom:10px;border:1px solid rgba(255,255,255,0.25)}
+.hero h1{font-size:22px;font-weight:700;margin-bottom:5px;position:relative}
+.hero p{font-size:13px;opacity:.85;position:relative}
+.hmeta{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+.hstat{background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.2);border-radius:10px;padding:7px 12px;font-size:11px;font-weight:500}
+.hstat span{display:block;font-size:14px;font-weight:700;margin-top:1px}
+
+/* NAV — sticky, flex-wrap so no overflow scroll issue */
+.nav{background:var(--w);border-bottom:1px solid var(--bd);padding:9px 14px;position:-webkit-sticky;position:sticky;top:0;z-index:50;box-shadow:0 2px 6px rgba(0,0,0,0.07)}
+.nav-inner{display:flex;flex-wrap:wrap;gap:6px}
+
+/* Tab labels */
+.nav label{display:inline-block;padding:8px 13px;font-size:12px;font-weight:600;border-radius:16px;border:1.5px solid var(--bd);background:transparent;color:var(--mu);cursor:pointer;white-space:nowrap;min-height:36px;line-height:1.3;-webkit-tap-highlight-color:rgba(201,75,42,0.2);user-select:none;-webkit-user-select:none}
+
+/* Content */
+.content{padding-bottom:60px}
+.dh{padding:18px 18px 14px;border-bottom:1px solid var(--bd)}
+.dlb{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--c);margin-bottom:3px}
+.dtt{font-size:19px;font-weight:700;letter-spacing:-.3px}
+.dsb{font-size:13px;color:var(--mu);margin-top:3px}
+
+.sec{padding:14px 18px 0}
+.stl{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);margin-bottom:9px;display:flex;align-items:center;gap:6px}
+.stl::before{content:'';display:inline-block;width:3px;height:13px;background:var(--c);border-radius:2px}
+
+/* Alerts */
+.al{margin:12px 18px 0;border-radius:10px;padding:10px 13px;font-size:13px;display:flex;gap:8px;align-items:flex-start;line-height:1.5}
+.am{background:var(--al);border:1px solid #E8C070;color:#7A4D08}
+.ab{background:var(--bl);border:1px solid #9DBFE8;color:#154080}
+.ag{background:var(--gl);border:1px solid #A5D6A7;color:#1B5E20}
+.ac{background:var(--cl);border:1px solid #E8A090;color:#7A2010}
+.ap{background:var(--pl);border:1px solid #C0B8EE;color:#3A2A8A}
+
+/* Cards */
+.cards{display:flex;flex-direction:column;gap:9px}
+.card{background:var(--w);border:1px solid var(--bd);border-radius:14px;padding:13px 15px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--c);border-radius:4px 0 0 4px}
+.card.t::before{background:var(--t)}.card.a::before{background:#D4850A}.card.b::before{background:var(--b)}.card.p::before{background:var(--p)}.card.g::before{background:var(--g)}
+.ctop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:5px}
+.card h3{font-size:14px;font-weight:600}
+.bk{font-size:11px;font-weight:600;padding:2px 8px;border-radius:10px;white-space:nowrap;flex-shrink:0}
+.bf{background:#E0F2EB;color:#0A5E40}.bc{background:var(--al);color:#7A4D08}.bm{background:#FAECE7;color:#8B2E14}.bb{background:var(--bl);color:#154080}
+.card p{font-size:13px;color:var(--mu);line-height:1.5}
+.lks{display:flex;gap:7px;margin-top:9px;flex-wrap:wrap}
+.lk{font-size:12px;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:3px;padding:5px 12px;border-radius:16px}
+.lkb{color:var(--b);background:var(--bl)}.lkm{background:var(--tl);color:var(--t)}.lkr{background:var(--cl);color:var(--c)}
+.pm{margin-top:7px;font-size:12px;color:var(--mu)}
+
+/* Transport box */
+.tb2{background:var(--tl);border:1px solid #90D4BE;border-radius:14px;padding:13px 15px}
+.tb2t{font-size:13px;font-weight:700;color:var(--t);margin-bottom:10px}
+.tr{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(15,122,92,0.15);gap:8px;font-size:13px}
+.tr:last-child{border-bottom:none;padding-bottom:0}
+.trk{color:#1A6B56;flex-shrink:0;max-width:44%}.trv{font-weight:600;color:#0A4535;text-align:right}
+.trv a{color:var(--b);font-weight:600;text-decoration:none}
+
+/* Timing grid */
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.ti{background:var(--w);border:1px solid var(--bd);border-radius:10px;padding:9px 11px}
+.tt{font-size:16px;font-weight:700;color:var(--b)}.td{font-size:11px;color:var(--mu);margin-top:1px;line-height:1.4}
+
+/* Restaurant cards */
+.rc{background:var(--w);border:1px solid var(--bd);border-radius:14px;padding:13px 15px;margin-bottom:9px}
+.rc h3{font-size:14px;font-weight:600;margin-bottom:4px}.rc p{font-size:13px;color:var(--mu);line-height:1.5}
+.rm{display:flex;gap:7px;margin-top:7px;flex-wrap:wrap;align-items:center}
+.pt{font-size:11px;font-weight:700;color:var(--a);background:var(--al);padding:2px 8px;border-radius:8px}
+
+/* Bbox */
+.bbox{background:var(--pl);border:1px solid #C0B8EE;border-radius:14px;padding:13px 15px}
+.bxt{font-size:13px;font-weight:700;color:var(--p);margin-bottom:10px}
+.br{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(83,64,176,0.12);gap:8px;font-size:13px}
+.br:last-child{border-bottom:none;padding-bottom:0}
+.brk{color:#5340B0;flex-shrink:0;max-width:44%}.brv{font-weight:600;color:#3A2A8A;text-align:right}
+.brv a{color:var(--b);text-decoration:none}
+
+/* Cost grid */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+.cc{background:var(--w);border:1px solid var(--bd);border-radius:14px;padding:11px 13px;border-top:3px solid var(--c)}
+.cc.ct{border-top-color:var(--t)}.cc.ca{border-top-color:#D4850A}.cc.cb{border-top-color:var(--b)}.cc.cp{border-top-color:var(--p)}.cc.cg2{border-top-color:var(--g)}
+.cc h3{font-size:10px;font-weight:700;color:var(--mu);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px}
+.cc p{font-size:12px;color:var(--mu);line-height:1.5}.cc .tot{font-size:14px;font-weight:700;color:var(--tx);margin-top:7px}
+
+/* Quick ref */
+.qref{background:#F4F3F0;border-radius:14px;padding:13px 15px}
+.qrt{font-size:13px;font-weight:700;color:var(--tx);margin-bottom:9px}
+.qr{display:flex;justify-content:space-between;padding:5px 0;font-size:13px;border-bottom:1px solid var(--bd)}
+.qr:last-child{border-bottom:none}
+.qr span:first-child{color:var(--mu)}.qr span:last-child{font-weight:600;text-align:right;max-width:60%}
+
+.div{height:1px;background:var(--bd);margin:14px 18px 0}
+.footer{background:#1C1C1A;color:rgba(255,255,255,0.55);padding:20px 18px;font-size:12px;text-align:center}
+.footer strong{color:rgba(255,255,255,0.9)}
+@media(max-width:360px){.hero h1{font-size:19px}.cg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- RADIO INPUTS must be direct children of body, BEFORE nav and content -->
+<input type="radio" name="tab" id="r0" checked>
+<input type="radio" name="tab" id="r1">
+<input type="radio" name="tab" id="r2">
+<input type="radio" name="tab" id="r3">
+<input type="radio" name="tab" id="r4">
+<input type="radio" name="tab" id="r5">
+<input type="radio" name="tab" id="r6">
+<input type="radio" name="tab" id="r7">
+<input type="radio" name="tab" id="r8">
+<input type="radio" name="tab" id="r9">
+<input type="radio" name="tab" id="r10">
+<input type="radio" name="tab" id="r11">
+
+<div class="hero">
+  <div class="hbadge">🇩🇪→🇮🇹→🇩🇪 Complete Italy Trip</div>
+  <h1>Augsburg · Naples · Bari · Nuremberg</h1>
+  <p>Naples 4 days · Sorrento · Procida · Capri · Bari 4 days · Alberobello · Matera · Polignano</p>
+  <div class="hmeta">
+    <div class="hstat">Depart<span>May 14</span></div>
+    <div class="hstat">Naples<span>May 15–18</span></div>
+    <div class="hstat">Bari<span>May 20–23</span></div>
+    <div class="hstat">Return<span>May 24</span></div>
+  </div>
+</div>
+
+<!-- NAV uses labels (linked to radio inputs) — pure CSS, no JS needed -->
+<div class="nav">
+  <div class="nav-inner">
+    <label for="r0">🚆 May 14</label>
+    <label for="r1">📍 Naples D1</label>
+    <label for="r2">🍋 Sorrento D2</label>
+    <label for="r3">🎣 Procida D3</label>
+    <label for="r4">💎 Capri D4</label>
+    <label for="r5">🚄 May 19</label>
+    <label for="r6">🏛️ Bari D1</label>
+    <label for="r7">🏠 Alberobello D2</label>
+    <label for="r8">🪨 Matera D3</label>
+    <label for="r9">🌊 Polignano D4</label>
+    <label for="r10">✈️ May 24</label>
+    <label for="r11">📋 Quick Ref</label>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- MAY 14 -->
+<div id="t0" class="pg">
+  <div class="dh">
+    <div class="dlb">May 14, 2026 · Travel Day</div>
+    <div class="dtt">Augsburg → Naples by Train</div>
+    <div class="dsb">Long travel day · ~11–12 hours total · Arrive Naples evening · Check in &amp; rest</div>
+  </div>
+  <div class="al ag"><span>✅</span><span><strong>Partial journey booked!</strong> Your ItaliaRail seat reservation is confirmed for Bologna → Naples. You need to arrange Augsburg → Bologna separately using your Eurail/InterRail pass.</span></div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">✅ Your confirmed booking — Bologna → Naples</div>
+    <div style="background:#E8F5E9;border:2px solid #4CAF50;border-radius:14px;padding:14px 16px">
+      <div style="font-size:15px;font-weight:700;color:#1B5E20;margin-bottom:10px">🚆 Train #9427 Frecciarossa — CONFIRMED</div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Route</span><span class="trv" style="color:#1B5E20">Bologna Centrale → Napoli Centrale</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Date</span><span class="trv" style="color:#1B5E20">Thursday 14 May 2026</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Departure</span><span class="trv" style="color:#1B5E20">17:02 from Bologna Centrale</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Arrival</span><span class="trv" style="color:#1B5E20">20:48 at Napoli Centrale</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Carriage &amp; Class</span><span class="trv" style="color:#1B5E20">Carriage 2 · Business Quiet 🤫</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Seats</span><span class="trv" style="color:#1B5E20">5A (Mohit) &amp; 8B (Swadha)</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">PNR — Show conductor</span><span class="trv" style="font-size:18px;font-weight:800;color:#C94B2A;letter-spacing:2px">LB9ST5</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">ItaliaRail Order #</span><span class="trv" style="color:#1B5E20">ITE-PQTC-4BEC-98BU-L</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Ticket Numbers</span><span class="trv" style="color:#1B5E20">2826146574 · 2826146572</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15);border-bottom:none"><span class="trk" style="color:#2E7D32">Ticket type</span><span class="trv" style="color:#1B5E20">Passholder — use with Eurail/InterRail pass</span></div>
+    </div>
+  </div>
+
+  <div class="al am" style="margin-top:14px"><span>⚠️</span><span><strong>Important:</strong> This is a PASSHOLDER seat reservation only. You must show both this ticket AND your Eurail/InterRail pass to the conductor. The ticket is already validated — do NOT stamp it at the platform machine.</span></div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">✅ Munich → Bologna — confirmed</div>
+    <div style="background:#E8F5E9;border:2px solid #4CAF50;border-radius:14px;padding:14px 16px">
+      <div style="font-size:15px;font-weight:700;color:#1B5E20;margin-bottom:10px">🚆 RJ 83 Railjet — CONFIRMED</div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Route</span><span class="trv" style="color:#1B5E20">München Hbf → Bologna Centrale</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Date</span><span class="trv" style="color:#1B5E20">Thursday, 14 May 2026</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Departure</span><span class="trv" style="font-size:17px;font-weight:700;color:#1B5E20">09:33 · Platform Gl.5-10</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Arrival</span><span class="trv" style="font-size:17px;font-weight:700;color:#1B5E20">16:08 · Bologna Centrale</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Duration</span><span class="trv" style="color:#1B5E20">6 hours 35 minutes · 13 stops</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Carriage</span><span class="trv" style="color:#1B5E20">262</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Seats</span><span class="trv" style="color:#1B5E20">82 &amp; 84</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15);border-bottom:none"><span class="trk" style="color:#2E7D32">Note</span><span class="trv" style="color:#C94B2A;font-weight:600">⚠️ High demand expected — board early!</span></div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Still needed — Augsburg → Munich (short hop)</div>
+    <div class="tb2">
+      <div class="tb2t">🚆 Augsburg → München Hbf (book this!)</div>
+      <div class="tr"><span class="trk">Route</span><span class="trv">Augsburg Hbf → München Hbf</span></div>
+      <div class="tr"><span class="trk">Journey time</span><span class="trv">~35 min</span></div>
+      <div class="tr"><span class="trk">Arrive München by</span><span class="trv"><strong>09:00 latest</strong> to catch RJ 83 at 09:33</span></div>
+      <div class="tr"><span class="trk">Recommended Augsburg departure</span><span class="trv">~08:20–08:25</span></div>
+      <div class="tr"><span class="trk">Book on</span><span class="trv"><a href="https://www.bahn.de" target="_blank">bahn.de</a> · ~€9–12pp</span></div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">✅ Your complete May 14 journey</div>
+    <div class="tg">
+      <div class="ti"><div class="tt">~08:20</div><div class="td">Depart Augsburg Hbf → Munich</div></div>
+      <div class="ti"><div class="tt">~08:55</div><div class="td">Arrive München Hbf</div></div>
+      <div class="ti"><div class="tt">09:33</div><div class="td">RJ 83 departs München · Car 262 · Seats 82 &amp; 84</div></div>
+      <div class="ti"><div class="tt">16:08</div><div class="td">Arrive Bologna Centrale · 54 min connection</div></div>
+      <div class="ti"><div class="tt">17:02</div><div class="td">Frecciarossa 9427 · Car 2 · Seats 5A &amp; 8B · PNR: LB9ST5</div></div>
+      <div class="ti"><div class="tt">20:48</div><div class="td">Arrive Napoli Centrale 🎉 Check in Giuseppina's Airbnb</div></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">✅ Your Naples accommodation — confirmed</div>
+    <div style="background:#E8F5E9;border:2px solid #4CAF50;border-radius:14px;padding:14px 16px">
+      <div style="font-size:15px;font-weight:700;color:#1B5E20;margin-bottom:10px">🏠 Naples Airbnb — CONFIRMED</div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Host</span><span class="trv" style="color:#1B5E20">Giuseppina</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Check-in</span><span class="trv" style="color:#1B5E20">Thu, May 14, 2026</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Check-out</span><span class="trv" style="color:#1B5E20">Tue, May 19, 2026</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Property</span><span class="trv" style="color:#1B5E20">Entire home/apt · 1 bed · 2 guests</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Confirmation code</span><span class="trv" style="font-size:16px;font-weight:800;color:#C94B2A;letter-spacing:1px">HM8K84BT3J</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Total paid</span><span class="trv" style="color:#1B5E20">€473.65 (incl. taxes)</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15);border-bottom:none"><span class="trk" style="color:#2E7D32">Cancellation</span><span class="trv" style="color:#1B5E20">Partial refund if cancelled before 1pm May 7</span></div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">On arrival in Naples</div>
+    <div class="cards">
+      <div class="card t"><div class="ctop"><h3>🍕 Eat near the station tonight</h3><span class="bk bf">Easy</span></div><p>After a long journey eat close to Naples Centrale. <strong>Pizzeria Di Matteo</strong> (10 min walk) is open late with great cheap pizza. Or grab a sfogliatella pastry from Pasticceria Attanasio — 2 min from the station.</p><div class="lks"><a href="https://maps.google.com/?q=Pizzeria+Di+Matteo+Naples" class="lk lkm">📍 Map</a></div></div>
+      <div class="card"><div class="ctop"><h3>🚇 Station to your hotel</h3><span class="bk bf">Easy</span></div><p>From Naples Centrale take Metro Line 1 (€1.10) to nearest stop. Official white taxis from rank outside — agree price before getting in, or use the app <strong>itTaxi</strong> or <strong>FREE NOW</strong>.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- NAPLES DAY 1 -->
+<div id="t1" class="pg">
+  <div class="dh">
+    <div class="dlb">Day 1 · May 15, 2026 — Naples</div>
+    <div class="dtt">Historic Naples</div>
+    <div class="dsb">Underground tunnels · Royal palace · Best city viewpoints · Walk + funicular · ~€32–38pp</div>
+  </div>
+  <div class="al am"><span>⚠️</span><span><strong>Note:</strong> Royal Palace is <strong>closed Wednesdays.</strong> May 15 is a Friday — you're fine!</span></div>
+  <div class="sec">
+    <div class="stl">Transport for Day 1</div>
+    <div class="tb2">
+      <div class="tb2t">🚶 Mostly on foot + one funicular</div>
+      <div class="tr"><span class="trk">All main sights</span><span class="trv">Walkable — free</span></div>
+      <div class="tr"><span class="trk">Funicular to Castel Sant'Elmo</span><span class="trv">€1.10 each way</span></div>
+      <div class="tr"><span class="trk">Unico Napoli day ticket</span><span class="trv">€4.50 — metro + bus + funicular all day</span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Places to visit — in order</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🕳️ Napoli Sotterranea</h3><span class="bk bm">Must-See</span></div><p>2,000-year-old Greek-Roman tunnels turned WWII bunkers. 1-hour guided tour. Cool underground — bring a light jacket. Open daily.</p><div class="lks"><a href="https://www.lanapolisotterranea.it" class="lk lkr">🎟 Book</a><a href="https://maps.google.com/?q=Napoli+Sotterranea" class="lk lkm">📍 Map</a></div><div class="pm">📍 Vico S. Anna di Palazzo 52 · ⏰ 9:30am–4:30pm · 💶 €15pp</div></div>
+      <div class="card t"><div class="ctop"><h3>🏘️ Spaccanapoli &amp; Via San Gregorio Armeno</h3><span class="bk bf">Free</span></div><p>Walk the ancient spine of Naples then into the Christmas artisan alley — craftsmen carving nativity figurines year-round. Completely authentic Naples street life.</p><div class="lks"><a href="https://maps.google.com/?q=Via+San+Gregorio+Armeno+Naples" class="lk lkm">📍 Map</a></div></div>
+      <div class="card"><div class="ctop"><h3>🏛️ Royal Palace of Naples</h3><span class="bk bc">€10 · Closed Wed</span></div><p>Grand Bourbon royal apartments — throne room, chapel, Baroque paintings. Free QR audio guide. Guided terrace tours at 10am, 11am, 3pm, 4pm. Allow 1.5–2 hours.</p><div class="lks"><a href="https://palazzorealedinapoli.org" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Royal+Palace+Naples" class="lk lkm">📍 Map</a></div><div class="pm">📍 Piazza del Plebiscito 1 · ⏰ 9am–8pm · 💶 €10pp</div></div>
+      <div class="card t"><div class="ctop"><h3>🏛️ Piazza del Plebiscito</h3><span class="bk bf">Free</span></div><p>Naples' grand semicircular square. Perfect photo spot at golden hour.</p><div class="lks"><a href="https://maps.google.com/?q=Piazza+del+Plebiscito+Naples" class="lk lkm">📍 Map</a></div></div>
+      <div class="card a"><div class="ctop"><h3>🏰 Castel Nuovo (Maschio Angioino)</h3><span class="bk bc">€10</span></div><p>Medieval seaside castle with a stunning triumphal Renaissance arch entrance. Museum inside with frescoes and battlements views over the port.</p><div class="lks"><a href="https://maps.google.com/?q=Castel+Nuovo+Naples" class="lk lkm">📍 Map</a></div><div class="pm">📍 Piazza Municipio · ⏰ 9am–7pm Mon–Sat · 💶 €10pp</div></div>
+      <div class="card"><div class="ctop"><h3>🌅 Castel Sant'Elmo — Sunset Panorama</h3><span class="bk bm">Best View!</span></div><p>Star-shaped fortress with the most breathtaking 360° panorama in Naples — Vesuvius, the entire Bay, Capri and Ischia all below you. Go at golden hour. Take the funicular up. Only €2.50 after 4pm.</p><div class="lks"><a href="https://maps.google.com/?q=Castel+Sant+Elmo+Naples" class="lk lkm">📍 Map</a></div><div class="pm">📍 Via Tito Angelini 20/A · ⏰ 8:30am–6:30pm · 💶 €5 (€2.50 after 4pm)</div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🥗 Vegetarian restaurants — Naples</div>
+    <div class="rc"><h3>L'Antica Pizzeria da Michele</h3><p>Naples' most legendary pizza since 1870. Only Margherita or Marinara (vegan). The original, the iconic, the unmissable.</p><div class="rm"><span class="pt">€ Budget</span><span style="font-size:12px;color:var(--mu)">📍 Via Cesare Sersale 1</span></div><div class="lks" style="margin-top:7px"><a href="https://www.damichele.net" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=L+Antica+Pizzeria+da+Michele+Naples" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Pizzeria Gino Sorbillo</h3><p>UNESCO-listed Neapolitan pizza. Excellent bufala margherita. Wide vegetarian toppings. Very good value on famous Via dei Tribunali.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via dei Tribunali 32</span></div><div class="lks" style="margin-top:7px"><a href="https://www.sorbillo.it" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Pizzeria+Sorbillo+Naples" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Trattoria da Nennella</h3><p>Loud, fun, legendary cheap trattoria in the Spanish Quarter. Great pasta e fagioli, pasta al pomodoro, melanzane parmigiana. Arrive before 1pm.</p><div class="rm"><span class="pt">€ Budget</span><span style="font-size:12px;color:var(--mu)">📍 Via Lungo Teatro Nuovo 103</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Trattoria+da+Nennella+Naples" class="lk lkm">📍 Map</a></div></div>
+  </div>
+</div>
+
+<!-- SORRENTO + AMALFI -->
+<div id="t2" class="pg">
+  <div class="dh">
+    <div class="dlb">Day 2 · May 16, 2026 — Naples</div>
+    <div class="dtt">Sorrento + Amalfi Coast</div>
+    <div class="dsb">Train to Sorrento · Ferry to Positano &amp; Amalfi · Return via Salerno · ~€42–48pp</div>
+  </div>
+  <div class="al am"><span>🌅</span><span><strong>Start early!</strong> Sorrento morning views, then ferry along the world's most scenic coast to Positano and Amalfi. Return via Salerno.</span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Full day transport route</div>
+    <div class="tb2">
+      <div class="tb2t">🚆⛴️ Naples → Sorrento → Positano → Amalfi → Salerno → Naples</div>
+      <div class="tr"><span class="trk">Naples → Sorrento</span><span class="trv">Circumvesuviana · €3.50 · 7:30am · 1hr 10min</span></div>
+      <div class="tr"><span class="trk">Sorrento → Positano</span><span class="trv">Ferry · ~40min · €15–18pp · ~10am</span></div>
+      <div class="tr"><span class="trk">Positano → Amalfi</span><span class="trv">Ferry · ~30min · €10–12pp</span></div>
+      <div class="tr"><span class="trk">Amalfi → Salerno</span><span class="trv">Ferry · ~1hr 15min · €8pp · Last ~6:30pm</span></div>
+      <div class="tr"><span class="trk">Salerno → Naples</span><span class="trv">Trenitalia regional · ~50min · €6pp</span></div>
+      <div class="tr"><span class="trk">Circumvesuviana</span><span class="trv"><a href="https://www.eavsrl.it" target="_blank">eavsrl.it</a></span></div>
+      <div class="tr"><span class="trk">Ferry schedules</span><span class="trv"><a href="https://www.positanoferries.it" target="_blank">positanoferries.it</a></span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Timings</div>
+    <div class="tg">
+      <div class="ti"><div class="tt">7:30am</div><div class="td">Train Naples → Sorrento</div></div>
+      <div class="ti"><div class="tt">8:45am</div><div class="td">Arrive Sorrento — views</div></div>
+      <div class="ti"><div class="tt">10:00am</div><div class="td">Ferry → Positano</div></div>
+      <div class="ti"><div class="tt">1:30pm</div><div class="td">Ferry → Amalfi</div></div>
+      <div class="ti"><div class="tt">5:30pm</div><div class="td">Ferry → Salerno</div></div>
+      <div class="ti"><div class="tt">7:30pm</div><div class="td">Train → Naples</div></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">📍 Sorrento — Morning</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🏛️ Chiostro di San Francesco</h3><span class="bk bf">Free · Best view</span></div><p>Best panoramic viewpoint in Sorrento — sweeping Bay of Naples and Vesuvius from a medieval cloister. 20–30 min.</p><div class="lks"><a href="https://maps.google.com/?q=Chiostro+di+San+Francesco+Sorrento" class="lk lkm">📍 Map</a></div></div>
+      <div class="card t"><div class="ctop"><h3>🌀 Vallone dei Mulini</h3><span class="bk bf">Hidden Gem</span></div><p>A dramatic natural gorge in the heart of Sorrento with a ruined 15th-century mill at the bottom. Most tourists miss it — look for the overlook near Piazza Tasso.</p><div class="lks"><a href="https://maps.google.com/?q=Vallone+dei+Mulini+Sorrento" class="lk lkm">📍 Map</a></div></div>
+      <div class="card a"><div class="ctop"><h3>🍋 Via San Cesareo</h3><span class="bk bf">Free</span></div><p>Lemon-scented shopping lane with free limoncello tastings in most shops. Buy a small bottle — much cheaper than the airport.</p><div class="lks"><a href="https://maps.google.com/?q=Via+San+Cesareo+Sorrento" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">📍 Positano (10:45am–1:30pm)</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🏖️ Spiaggia Grande</h3><span class="bk bf">Free</span></div><p>The iconic main beach — dramatic cliffs, pastel houses, turquoise water. The classic postcard view. Swim or relax.</p><div class="lks"><a href="https://maps.google.com/?q=Spiaggia+Grande+Positano" class="lk lkm">📍 Map</a></div></div>
+      <div class="card t"><div class="ctop"><h3>⛪ Church of Santa Maria Assunta</h3><span class="bk bf">Free</span></div><p>Beautiful majolica-tiled dome church. Inside: precious 13th-century Byzantine Black Madonna icon. Small but deeply atmospheric.</p><div class="lks"><a href="https://maps.google.com/?q=Church+Santa+Maria+Assunta+Positano" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">📍 Amalfi Town (2pm–5:30pm)</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>⛪ Cathedral of Sant'Andrea (Duomo)</h3><span class="bk bc">€3 cloister</span></div><p>Spectacular Arab-Norman-Byzantine cathedral with 62-step staircase. The Chiostro del Paradiso cloister with Moorish arches is stunning. One of the finest cathedrals in southern Italy.</p><div class="lks"><a href="https://maps.google.com/?q=Amalfi+Cathedral" class="lk lkm">📍 Map</a></div></div>
+      <div class="card t"><div class="ctop"><h3>📜 Museo della Carta</h3><span class="bk bc">€4</span></div><p>Amalfi invented European paper-making in the 11th century. Fascinating 13th-century paper mill museum. 45 minutes. Very unique.</p><div class="lks"><a href="https://www.museodellacarta.it" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Museo+della+Carta+Amalfi" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🥗 Vegetarian restaurants</div>
+    <div class="rc"><h3>La Basilica — Sorrento</h3><p>Lively pizzeria on Piazza Sant'Antonino. Good pasta al limone, caprese. Great for a quick morning snack before the ferry.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Piazza Sant'Antonino 28, Sorrento</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=La+Basilica+Sorrento" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Chez Black — Positano</h3><p>Iconic restaurant right on Spiaggia Grande. Famous pasta al limone and bufala margherita pizza. Arrive before 12:30pm.</p><div class="rm"><span class="pt">€€€ Upscale</span><span style="font-size:12px;color:var(--mu)">📍 Via del Brigantino 19, Positano</span></div><div class="lks" style="margin-top:7px"><a href="https://www.chezblack.it" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Chez+Black+Positano" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Trattoria Il Mulino — Amalfi</h3><p>Authentic family trattoria off the main square. Very good vegetarian pasta and melanzane parmigiana. Best value in Amalfi.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via delle Cartiere 36, Amalfi</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Trattoria+Il+Mulino+Amalfi" class="lk lkm">📍 Map</a></div></div>
+  </div>
+</div>
+
+<!-- PROCIDA -->
+<div id="t3" class="pg">
+  <div class="dh">
+    <div class="dlb">Day 3 · May 17, 2026 — Naples</div>
+    <div class="dtt">Procida Island</div>
+    <div class="dsb">Ferry from Naples Molo Beverello · 35–40 min · ~€26–32pp transport</div>
+  </div>
+  <div class="al ag"><span>🏆</span><span>Procida — <strong>Italy's Capital of Culture 2022.</strong> Far less crowded than Capri, cheaper, and deeply authentic — a real fishing island with extraordinary pastel architecture.</span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Ferry timings &amp; costs</div>
+    <div class="tb2">
+      <div class="tb2t">⛴️ Naples Molo Beverello → Procida Marina Grande</div>
+      <div class="tr"><span class="trk">Caremar ferry times</span><span class="trv">7:00am · 9:00am · 12:15pm · 4:00pm</span></div>
+      <div class="tr"><span class="trk">SNAV fast ferry</span><span class="trv">9:10am · 11:10am (faster, pricier)</span></div>
+      <div class="tr"><span class="trk">Best departure</span><span class="trv">9:00am · Arrive ~9:45am</span></div>
+      <div class="tr"><span class="trk">Journey time</span><span class="trv">~35–40 minutes</span></div>
+      <div class="tr"><span class="trk">Cost (each way)</span><span class="trv">Caremar ~€12–14 · SNAV ~€14–16pp</span></div>
+      <div class="tr"><span class="trk">Last return</span><span class="trv">~7:00–8:00pm</span></div>
+      <div class="tr"><span class="trk">On island — Bus C2</span><span class="trv">€2.10 for 100-min ticket</span></div>
+      <div class="tr"><span class="trk">Book</span><span class="trv"><a href="https://www.caremar.it" target="_blank">caremar.it</a> · <a href="https://www.snav.it" target="_blank">snav.it</a></span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Places to visit on Procida</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🏘️ Marina Grande</h3><span class="bk bf">First stop</span></div><p>Spectacular crescent of tall, narrow pastel houses in lemon yellow, terracotta and rose pink. Walk the waterfront and soak in the first impression.</p><div class="lks"><a href="https://maps.google.com/?q=Marina+Grande+Procida" class="lk lkm">📍 Map</a></div></div>
+      <div class="card"><div class="ctop"><h3>🏔️ Panoramica sulla Corricella</h3><span class="bk bm">⭐ 4.9 · Must-See</span></div><p>The most photographed view on Procida — hilltop overlook above the colourful Corricella fishing village. Walk up from port (20 min) or take Bus C2. Go in the morning for best light.</p><div class="lks"><a href="https://maps.google.com/?q=Panoramica+sulla+Corricella+Procida" class="lk lkm">📍 Map</a></div></div>
+      <div class="card t"><div class="ctop"><h3>🎣 Marina Corricella — The Village</h3><span class="bk bf">Free</span></div><p>Walk down from the viewpoint into the village. Tiny pastel houses, fishermen's nets, boats on shore. Completely authentic. Have lunch at La Conchiglia at the water's edge.</p><div class="lks"><a href="https://maps.google.com/?q=Marina+Corricella+Procida" class="lk lkm">📍 Map</a></div></div>
+      <div class="card a"><div class="ctop"><h3>⛪ Terra Murata — Medieval Hilltop</h3><span class="bk bf">Free</span></div><p>Procida's ancient hilltop citadel with panoramic views to the mainland and Vesuvius. Abbey of San Michele Arcangelo. Atmospheric and uncrowded.</p><div class="lks"><a href="https://maps.google.com/?q=Terra+Murata+Procida" class="lk lkm">📍 Map</a></div></div>
+      <div class="card"><div class="ctop"><h3>🏖️ Spiaggia di Ciraccio</h3><span class="bk bf">Best beach</span></div><p>Most beautiful sandy beach — turquoise-clear water, far less crowded than Capri. 15 min by Bus C2 from the port. Perfect afternoon swim.</p><div class="lks"><a href="https://maps.google.com/?q=Spiaggia+di+Ciraccio+Procida" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🥗 Vegetarian restaurants — Procida</div>
+    <div class="rc"><h3>La Conchiglia</h3><p>Tables practically in the water at Marina Corricella. Wonderful spaghetti al pomodoro, pasta e patate. One of Italy's most magical restaurant settings. Arrive early for a waterfront table.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Marina Corricella 33</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=La+Conchiglia+Procida" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Ristorante Crescenzo</h3><p>Charming family restaurant at Marina Chiaiolella. Excellent vegetarian pasta, antipasti di verdure, outstanding lemon tart.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via Marina Chiaiolella 33</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Ristorante+Crescenzo+Procida" class="lk lkm">📍 Map</a></div></div>
+  </div>
+</div>
+
+<!-- CAPRI -->
+<div id="t4" class="pg">
+  <div class="dh">
+    <div class="dlb">Day 4 · May 18, 2026 — Naples</div>
+    <div class="dtt">Capri — Island of Legends</div>
+    <div class="dsb">Fast ferry from Molo Beverello · ~55 min · ~€44–52pp transport · Start early!</div>
+  </div>
+  <div class="al ac"><span>💎</span><span><strong>Go early!</strong> Blue Grotto has limited entry — queues form fast and it can close due to rough waves. Take the 8:35am ferry and head straight there.</span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Ferry timings &amp; costs</div>
+    <div class="tb2">
+      <div class="tb2t">⛴️ Naples Molo Beverello → Capri Marina Grande</div>
+      <div class="tr"><span class="trk">Fast ferry times</span><span class="trv">7:05am · 8:35am · 9:45am · 11:00am</span></div>
+      <div class="tr"><span class="trk">Best departure</span><span class="trv">8:35am · Arrive ~9:35am</span></div>
+      <div class="tr"><span class="trk">Cost (each way)</span><span class="trv">~€22–25pp</span></div>
+      <div class="tr"><span class="trk">Last return</span><span class="trv">~7:30–8:00pm</span></div>
+      <div class="tr"><span class="trk">Funicular (Marina → Capri Town)</span><span class="trv">€2 each way</span></div>
+      <div class="tr"><span class="trk">Monte Solaro chairlift</span><span class="trv">€12 return · <a href="https://www.capriseggiovia.it" target="_blank">capriseggiovia.it</a></span></div>
+      <div class="tr"><span class="trk">Book ferry</span><span class="trv"><a href="https://www.snav.it" target="_blank">snav.it</a> · <a href="https://www.caremar.it" target="_blank">caremar.it</a></span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Timings</div>
+    <div class="tg">
+      <div class="ti"><div class="tt">8:35am</div><div class="td">Depart Naples</div></div>
+      <div class="ti"><div class="tt">9:35am</div><div class="td">Arrive — go to Blue Grotto!</div></div>
+      <div class="ti"><div class="tt">11:30am</div><div class="td">Funicular → Capri Town</div></div>
+      <div class="ti"><div class="tt">1–2:30pm</div><div class="td">Lunch + Gardens of Augustus</div></div>
+      <div class="ti"><div class="tt">2:30–5pm</div><div class="td">Bus Anacapri + Monte Solaro</div></div>
+      <div class="ti"><div class="tt">6:00pm</div><div class="td">Return ferry to Naples</div></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Places to visit on Capri</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🔵 Grotta Azzurra (Blue Grotto)</h3><span class="bk bm">Iconic · Go First!</span></div><p>Sea cave where the water glows electric blue. You enter lying flat in a tiny rowboat. Go immediately on arrival — queues build fast and it can close due to rough seas.</p><div class="lks"><a href="https://maps.google.com/?q=Blue+Grotto+Capri" class="lk lkm">📍 Map</a></div><div class="pm">💶 ~€18pp (rowboat + entry) · ⏰ 9am–5pm weather permitting</div></div>
+      <div class="card t"><div class="ctop"><h3>🚡 Monte Solaro — Chairlift &amp; Summit</h3><span class="bk bm">Best Panorama</span></div><p>Highest point of Capri (589m) by single-seat chairlift from Anacapri. Extraordinary 360° panorama — Bay of Naples, Vesuvius, Amalfi Coast all visible.</p><div class="lks"><a href="https://www.capriseggiovia.it" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Monte+Solaro+Chairlift+Anacapri" class="lk lkm">📍 Map</a></div><div class="pm">💶 €12 return · 📍 Piazza Vittoria, Anacapri</div></div>
+      <div class="card"><div class="ctop"><h3>☕ La Piazzetta (Piazza Umberto I)</h3><span class="bk bf">Free to visit</span></div><p>The glamorous heart of Capri — a tiny square ringed by four cafés. Famous clock tower, extraordinary people-watching. Explore the whitewashed alleyways of Capri Town.</p><div class="lks"><a href="https://maps.google.com/?q=Piazzetta+Capri" class="lk lkm">📍 Map</a></div></div>
+      <div class="card t"><div class="ctop"><h3>🌿 Gardens of Augustus</h3><span class="bk bc">€1</span></div><p>Spectacular view of the Faraglioni sea stacks and the Via Krupp cliff path. Founded by Emperor Augustus. Just €1 entry.</p><div class="lks"><a href="https://maps.google.com/?q=Gardens+of+Augustus+Capri" class="lk lkm">📍 Map</a></div><div class="pm">💶 €1 · ⏰ 9am–7:30pm</div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🥗 Vegetarian restaurants — Capri</div>
+    <div class="rc"><h3>Da Gelsomina — Anacapri</h3><p>Wonderful family trattoria with terrace and views. Excellent vegetarian antipasti, homemade pasta, ravioli caprese (ricotta + marjoram). Best value on the island.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via Migliara 72, Anacapri</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Da+Gelsomina+Anacapri" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Lo Sfizio — Anacapri</h3><p>Casual, good-value pizzeria popular with locals. Great vegetarian pizza and pasta — prices far below Capri Town. Near the Monte Solaro chairlift.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via Capodimonte 8, Anacapri</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Lo+Sfizio+Anacapri" class="lk lkm">📍 Map</a></div></div>
+  </div>
+</div>
+
+<!-- MAY 19 -->
+<div id="t5" class="pg">
+  <div class="dh">
+    <div class="dlb">May 19, 2026 · Travel Day</div>
+    <div class="dtt">Naples → Bari by Train</div>
+    <div class="dsb">~3hr 15min · Book in advance! · Arrive Bari afternoon · Check in &amp; explore old town</div>
+  </div>
+  <div class="al am"><span>🚨</span><span><strong>Book in advance!</strong> Frecciarossa prices jump close to date. Early = €25–35pp. Last minute = €55+. <a href="https://www.trenitalia.com" target="_blank" style="color:#7A4D08;font-weight:700">trenitalia.com</a></span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">✅ Your Bari accommodation — confirmed</div>
+    <div style="background:#E8F5E9;border:2px solid #4CAF50;border-radius:14px;padding:14px 16px">
+      <div style="font-size:15px;font-weight:700;color:#1B5E20;margin-bottom:10px">🏠 Bari Airbnb — CONFIRMED</div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Host</span><span class="trv" style="color:#1B5E20">Chiara</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Check-in</span><span class="trv" style="color:#1B5E20">Tue, May 19, 2026 · from 3:00 PM</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Check-out</span><span class="trv" style="color:#1B5E20">Sun, May 24, 2026</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Property</span><span class="trv" style="color:#1B5E20">Entire home/apt · 2 beds · 2 guests</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Confirmation code</span><span class="trv" style="font-size:16px;font-weight:800;color:#C94B2A;letter-spacing:1px">HMW4RQJYA8</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Total paid</span><span class="trv" style="color:#1B5E20">€589.84</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15);border-bottom:none"><span class="trk" style="color:#2E7D32">Cancellation</span><span class="trv" style="color:#1B5E20">Free cancel before 3pm May 14 · Partial refund before check-in May 19</span></div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Train — Naples Centrale → Bari Centrale</div>
+    <div class="bbox">
+      <div class="bxt">🚄 Naples → Bari Train Details</div>
+      <div class="br"><span class="brk">Train</span><span class="brv">Frecciarossa or Frecciargento</span></div>
+      <div class="br"><span class="brk">Journey time</span><span class="brv">~3hrs 15min</span></div>
+      <div class="br"><span class="brk">Best departure</span><span class="brv">8:50am → arrive Bari ~12:05pm</span></div>
+      <div class="br"><span class="brk">Cost (advance)</span><span class="brv">€25–35pp</span></div>
+      <div class="br"><span class="brk">Book Trenitalia</span><span class="brv"><a href="https://www.trenitalia.com" target="_blank">trenitalia.com</a></span></div>
+      <div class="br"><span class="brk">Book Italo</span><span class="brv"><a href="https://www.italotreno.it" target="_blank">italotreno.it</a></span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">On arrival in Bari — evening</div>
+    <div class="cards">
+      <div class="card t"><div class="ctop"><h3>🍞 First stop: Focaccia Barese</h3><span class="bk bf">€1–2</span></div><p>Bari's famous thick focaccia with tomatoes, olives and olive oil — THE local street food. Get it warm from any bakery in Bari Vecchia. One of the best things you'll eat in Italy.</p><div class="lks"><a href="https://maps.google.com/?q=Bari+Vecchia+old+town" class="lk lkm">📍 Bari Vecchia</a></div></div>
+      <div class="card"><div class="ctop"><h3>🍝 Strada delle Orecchiette</h3><span class="bk bf">Free to watch</span></div><p>Bari's most iconic sight — elderly women hand-rolling orecchiette pasta outside their homes. Visit any morning or afternoon. Buy a bag of fresh pasta (~€3) to take home.</p><div class="lks"><a href="https://maps.google.com/?q=Strada+delle+Orecchiette+Bari" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- BARI DAY 1 -->
+<div id="t6" class="pg">
+  <div class="dh">
+    <div class="dlb">Day 5 · May 20, 2026 — Bari</div>
+    <div class="dtt">Bari City — Old Town, Basilica &amp; Seafront</div>
+    <div class="dsb">All on foot · Completely walkable · Budget ~€15–20pp · One of the best old towns in Italy</div>
+  </div>
+  <div class="al ag"><span>🌟</span><span>Puglia's biggest city has a magnificent medieval old town, one of Italy's most important churches, a Norman castle and the best street food you'll eat anywhere. Allow a full day.</span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Places to visit — Bari</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>⛪ Basilica di San Nicola</h3><span class="bk bm">Must-See · Free</span></div><p>One of the most important churches in Italy — built in 1087 to house the relics of St Nicholas (the original Santa Claus!). Magnificent Romanesque architecture, remarkable crypt. Pilgrims come from all over the world. Go early morning.</p><div class="lks"><a href="https://www.basilicasannicola.it" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Basilica+di+San+Nicola+Bari" class="lk lkm">📍 Map</a></div><div class="pm">📍 Piazza San Nicola, Bari Vecchia · ⏰ 7am–8pm · 💶 Free</div></div>
+      <div class="card t"><div class="ctop"><h3>🏘️ Bari Vecchia (Old Town)</h3><span class="bk bf">Free · Get lost!</span></div><p>A labyrinth of narrow medieval alleyways, archways, laundry hanging overhead and women making pasta at their doorways. One of the most authentic old towns in southern Italy. Best explored without a map.</p><div class="lks"><a href="https://maps.google.com/?q=Bari+Vecchia+old+town" class="lk lkm">📍 Map</a></div></div>
+      <div class="card"><div class="ctop"><h3>🍝 Strada delle Orecchiette</h3><span class="bk bf">Free · Iconic</span></div><p>Elderly women sitting outside their homes every morning hand-rolling orecchiette pasta. Watch, photograph, buy a bag of fresh pasta (~€3). Mornings are best (9am–12pm). Completely genuine, completely unforgettable.</p><div class="lks"><a href="https://maps.google.com/?q=Strada+delle+Orecchiette+Bari" class="lk lkm">📍 Map</a></div></div>
+      <div class="card a"><div class="ctop"><h3>⛪ Cattedrale di San Sabino</h3><span class="bk bf">Free</span></div><p>Bari's magnificent Romanesque cathedral. Beautiful rose window, ancient crypt and remarkable icon of the Madonna Odegitria — one of the oldest in the world.</p><div class="lks"><a href="https://maps.google.com/?q=Cattedrale+di+San+Sabino+Bari" class="lk lkm">📍 Map</a></div><div class="pm">📍 Piazza dell'Odegitria · ⏰ 8am–12:30pm, 4–7pm · 💶 Free</div></div>
+      <div class="card t"><div class="ctop"><h3>🏰 Castello Svevo (Swabian Castle)</h3><span class="bk bc">€4</span></div><p>A massive Norman-Swabian castle built by Frederick II in 1233. Two towers, a moat, impressive battlements and museum. Great views from the walls over Bari Vecchia and the sea.</p><div class="lks"><a href="https://maps.google.com/?q=Castello+Svevo+Bari" class="lk lkm">📍 Map</a></div><div class="pm">📍 Piazza Federico II di Svevia · ⏰ 8:30am–7:30pm · 💶 €4pp</div></div>
+      <div class="card"><div class="ctop"><h3>🌊 Lungomare Nazario Sauro</h3><span class="bk bf">Free</span></div><p>Bari's beautiful Adriatic seafront promenade. Perfect for an evening passeggiata. Locals of all ages come out to walk, chat and eat gelato along the sea.</p><div class="lks"><a href="https://maps.google.com/?q=Lungomare+Nazario+Sauro+Bari" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🥗 Vegetarian restaurants &amp; street food — Bari</div>
+    <div class="rc"><h3>Focaccia Barese — street food</h3><p>THE essential Bari experience — thick focaccia with tomatoes, black olives and olive oil. Get it from any panificio (bakery) in Bari Vecchia, still warm from the oven. Costs €1–2 — you won't believe how good it is.</p><div class="rm"><span class="pt">€ Budget</span><span style="font-size:12px;color:var(--mu)">📍 Bari Vecchia bakeries</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Panificio+Santa+Rita+Bari" class="lk lkm">📍 Panificio Santa Rita</a></div></div>
+    <div class="rc"><h3>Terranima</h3><p>One of Bari's best restaurants for traditional Apulian cuisine. Excellent vegetarian options — <strong>orecchiette alle cime di rapa</strong> (THE definitive Puglia vegetarian pasta), fave e cicoria (broad bean purée with wild chicory).</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via Putignani 213, Bari</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Terranima+Restaurant+Bari" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Osteria delle Travi — Il Buco</h3><p>Historic trattoria in Bari Vecchia. Traditional Barese cooking in a cave-like setting. Outstanding orecchiette, vegetarian antipasti. Very popular — reserve ahead.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Largo Chiurlia 12, Bari Vecchia</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Osteria+delle+Travi+Bari" class="lk lkm">📍 Map</a></div></div>
+  </div>
+</div>
+
+<!-- ALBEROBELLO -->
+<div id="t7" class="pg">
+  <div class="dh">
+    <div class="dlb">Day 6 · May 21, 2026 — Day Trip from Bari</div>
+    <div class="dtt">Alberobello + Locorotondo</div>
+    <div class="dsb">Ferrovie del Sud Est train · ~1hr 30min · UNESCO trulli villages · ~€10–15pp transport</div>
+  </div>
+  <div class="al ag"><span>🏠</span><span>Alberobello's <strong>trulli</strong> — conical stone houses unique to Puglia — are UNESCO World Heritage listed. Thousands of fairy-tale structures crowd the hilltop. Locorotondo nearby is one of Italy's most beautiful whitewashed villages.</span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Getting there — FSE train</div>
+    <div class="tb2">
+      <div class="tb2t">🚂 Bari Centrale → Alberobello (FSE)</div>
+      <div class="tr"><span class="trk">Depart from</span><span class="trv">Bari Centrale (FSE platform — separate from Trenitalia)</span></div>
+      <div class="tr"><span class="trk">Best departure</span><span class="trv">8:30–9:00am · Arrive ~10:30am</span></div>
+      <div class="tr"><span class="trk">Journey time</span><span class="trv">~1hr 30min (1 change at Putignano)</span></div>
+      <div class="tr"><span class="trk">Cost</span><span class="trv">€4.50 each way · ~€9 return</span></div>
+      <div class="tr"><span class="trk">Alberobello → Locorotondo</span><span class="trv">FSE train · ~15–20min · €1.50</span></div>
+      <div class="tr"><span class="trk">Last train back</span><span class="trv">~7:30–8:00pm</span></div>
+      <div class="tr"><span class="trk">Schedules</span><span class="trv"><a href="https://www.fseonline.it" target="_blank">fseonline.it</a></span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Places to visit</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🏠 Rione Monti — Trulli District</h3><span class="bk bm">UNESCO · Must-See</span></div><p>Over 1,000 ancient conical stone houses climbing a steep hillside. Walk through narrow lanes, admire the whitewashed walls with painted symbols on the roofs. Best views from the top of the hill looking back down. Completely unique.</p><div class="lks"><a href="https://maps.google.com/?q=Rione+Monti+Alberobello" class="lk lkm">📍 Map</a></div><div class="pm">💶 Free to walk · ⏰ Always open</div></div>
+      <div class="card t"><div class="ctop"><h3>🏠 Rione Aia Piccola</h3><span class="bk bf">Less crowded</span></div><p>The second trulli district — smaller, quieter and less touristy. Many trulli here are still private residences. The most authentic part of Alberobello.</p><div class="lks"><a href="https://maps.google.com/?q=Rione+Aia+Piccola+Alberobello" class="lk lkm">📍 Map</a></div></div>
+      <div class="card a"><div class="ctop"><h3>⛪ Trullo Sovrano</h3><span class="bk bc">€3</span></div><p>The only two-storey trullo in Alberobello — a grand 18th-century trullo converted into a chapel and then a home. Museum inside shows original furniture from the 1700s.</p><div class="lks"><a href="https://maps.google.com/?q=Trullo+Sovrano+Alberobello" class="lk lkm">📍 Map</a></div><div class="pm">💶 €3 · ⏰ 10am–6pm</div></div>
+      <div class="card"><div class="ctop"><h3>🏘️ Locorotondo Historic Centre</h3><span class="bk bm">Very beautiful</span></div><p>One of Italy's most beautiful villages — a hilltop town of brilliant white houses, narrow lanes, flower-filled balconies. Walk the Via Nardelli circular route for the best panorama over the Valle d'Itria and its dotted trulli below.</p><div class="lks"><a href="https://maps.google.com/?q=Locorotondo+historic+centre" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🥗 Vegetarian restaurants</div>
+    <div class="rc"><h3>Il Poeta Contadino — Alberobello</h3><p>One of Alberobello's best restaurants. Excellent vegetarian options — orecchiette alle cime di rapa, fave e cicoria, grilled vegetables. Beautiful setting inside a historic trullo.</p><div class="rm"><span class="pt">€€€ Upscale</span><span style="font-size:12px;color:var(--mu)">📍 Via Indipendenza 21, Alberobello</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Il+Poeta+Contadino+Alberobello" class="lk lkm">📍 Map</a></div></div>
+  </div>
+</div>
+
+<!-- MATERA -->
+<div id="t8" class="pg">
+  <div class="dh">
+    <div class="dlb">Day 7 · May 22, 2026 — Day Trip from Bari</div>
+    <div class="dtt">Matera — The Ancient Cave City</div>
+    <div class="dsb">Bus from Bari · ~1hr 30min · UNESCO World Heritage · One of the oldest cities on Earth</div>
+  </div>
+  <div class="al ap"><span>🪨</span><span>Matera is one of the most extraordinary places in the world — a city of <strong>cave dwellings (Sassi)</strong> inhabited for over 9,000 years. European Capital of Culture 2019. Absolutely unmissable.</span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Getting to Matera — bus from Bari</div>
+    <div class="tb2">
+      <div class="tb2t">🚌 Bari → Matera (FAL bus)</div>
+      <div class="tr"><span class="trk">Depart from</span><span class="trv">Bari Centrale (FAL station — next to main station)</span></div>
+      <div class="tr"><span class="trk">Best departure</span><span class="trv">8:00–9:00am · Arrive Matera ~9:30–10:30am</span></div>
+      <div class="tr"><span class="trk">Journey time</span><span class="trv">~1hr 30min</span></div>
+      <div class="tr"><span class="trk">Cost</span><span class="trv">~€4–5 each way · ~€9 return</span></div>
+      <div class="tr"><span class="trk">Last bus back</span><span class="trv">~7:00–8:00pm</span></div>
+      <div class="tr"><span class="trk">Schedules</span><span class="trv"><a href="https://www.fal-srl.it" target="_blank">fal-srl.it</a></span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Places to visit in Matera</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🪨 Sasso Caveoso</h3><span class="bk bm">Must-See · Free</span></div><p>The older of Matera's two sassi districts — thousands of cave dwellings carved into the ravine, churches cut into the rock. Walk down into the ravine for the most dramatic views. One of the most extraordinary sights on Earth.</p><div class="lks"><a href="https://maps.google.com/?q=Sasso+Caveoso+Matera" class="lk lkm">📍 Map</a></div></div>
+      <div class="card t"><div class="ctop"><h3>⛪ Cave Churches — Madonna de Idris</h3><span class="bk bc">€3–5</span></div><p>Rock-carved churches with medieval frescoes still visible on the stone. Madonna de Idris is built into a rocky outcrop with extraordinary views. Completely unique and genuinely ancient.</p><div class="lks"><a href="https://maps.google.com/?q=Madonna+de+Idris+Matera" class="lk lkm">📍 Map</a></div></div>
+      <div class="card a"><div class="ctop"><h3>🪨 Sasso Barisano</h3><span class="bk bf">Free to walk</span></div><p>The more restored of the two sassi — hotels and restaurants now occupy many cave dwellings. Walk Via Madonna delle Virtù for the best views across the ravine.</p><div class="lks"><a href="https://maps.google.com/?q=Sasso+Barisano+Matera" class="lk lkm">📍 Map</a></div></div>
+      <div class="card"><div class="ctop"><h3>📸 Belvedere di Murgia Timone</h3><span class="bk bf">Best photo spot</span></div><p>The best viewpoint of Matera — from the opposite cliff across the ravine. Walk or taxi across the Gravina gorge. The view of thousands of cave dwellings cascading down is the most iconic image of Matera. Unmissable for photos.</p><div class="lks"><a href="https://maps.google.com/?q=Belvedere+Murgia+Timone+Matera" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🥗 Vegetarian restaurants — Matera</div>
+    <div class="rc"><h3>Ristorante Baccanti</h3><p>Excellent traditional Materan cuisine in a beautiful cave restaurant in Sasso Barisano. Good vegetarian pasta — cavatelli with tomatoes and ricotta. Very atmospheric. Book ahead.</p><div class="rm"><span class="pt">€€€ Upscale</span><span style="font-size:12px;color:var(--mu)">📍 Via Sant'Angelo 58, Matera</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Ristorante+Baccanti+Matera" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Trattoria del Caveoso</h3><p>Charming trattoria on the edge of Sasso Caveoso with terrace views over the ravine. Good local pasta, vegetarian antipasti. Excellent value for Matera.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Sasso Caveoso, Matera</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Trattoria+Caveoso+Matera" class="lk lkm">📍 Map</a></div></div>
+  </div>
+</div>
+
+<!-- POLIGNANO -->
+<div id="t9" class="pg">
+  <div class="dh">
+    <div class="dlb">Day 8 · May 23, 2026 — Day Trip from Bari</div>
+    <div class="dtt">Polignano a Mare + Ostuni</div>
+    <div class="dsb">Train from Bari · Short journeys · Dramatic cliffs &amp; the White City · ~€14pp transport</div>
+  </div>
+  <div class="al ab"><span>🌊</span><span><strong>Polignano a Mare</strong> — perched on sheer limestone cliffs over turquoise sea. <strong>Ostuni</strong> — a dazzling hilltop town painted entirely white with panoramic views across Puglia.</span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Getting there — train from Bari</div>
+    <div class="tb2">
+      <div class="tb2t">🚂 Bari → Polignano → Ostuni (Trenitalia regional)</div>
+      <div class="tr"><span class="trk">Bari → Polignano a Mare</span><span class="trv">~30min · €2.50pp · Depart 8:30–9am</span></div>
+      <div class="tr"><span class="trk">Polignano → Ostuni</span><span class="trv">~45min · €5pp · After lunch</span></div>
+      <div class="tr"><span class="trk">Ostuni → Bari return</span><span class="trv">Direct · ~1hr · €6pp</span></div>
+      <div class="tr"><span class="trk">Total transport</span><span class="trv">~€14pp return (all legs)</span></div>
+      <div class="tr"><span class="trk">Book / check times</span><span class="trv"><a href="https://www.trenitalia.com" target="_blank">trenitalia.com</a></span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">📍 Polignano a Mare</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🌊 Cliff Viewpoints — Il Bastione</h3><span class="bk bm">Most Dramatic</span></div><p>The old town is perched on sheer limestone cliffs dropping straight into the turquoise Adriatic. Walk to Il Bastione terrace for the most dramatic view. One of the most photographed spots in all of Puglia.</p><div class="lks"><a href="https://maps.google.com/?q=Il+Bastione+Polignano+a+Mare" class="lk lkm">📍 Map</a></div></div>
+      <div class="card t"><div class="ctop"><h3>🏖️ Lama Monachile Beach</h3><span class="bk bf">Free</span></div><p>The main beach of Polignano — a dramatic inlet between two cliff faces with brilliant turquoise water. Reached by stairs from the old town. Small but strikingly beautiful. Perfect morning swim.</p><div class="lks"><a href="https://maps.google.com/?q=Lama+Monachile+Beach+Polignano" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">📍 Ostuni — The White City</div>
+    <div class="cards">
+      <div class="card"><div class="ctop"><h3>🏙️ The White Historic Centre</h3><span class="bk bm">Stunning · Free</span></div><p>The entire hilltop city is painted dazzling white — every building, staircase, wall. Walking through the maze of white lanes is genuinely magical. The town climbs steeply to the cathedral at the top with spectacular views.</p><div class="lks"><a href="https://maps.google.com/?q=Ostuni+historic+centre" class="lk lkm">📍 Map</a></div></div>
+      <div class="card t"><div class="ctop"><h3>⛪ Ostuni Cathedral</h3><span class="bk bf">Free</span></div><p>Stunning late Gothic cathedral with a magnificent 15th-century rose window. Views from the cathedral square over the entire Puglian plain stretching to the sea — 30km on a clear day.</p><div class="lks"><a href="https://maps.google.com/?q=Ostuni+Cathedral" class="lk lkm">📍 Map</a></div></div>
+    </div>
+  </div>
+  <div class="div"></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🥗 Vegetarian restaurants</div>
+    <div class="rc"><h3>Caffè Tripoli — Polignano</h3><p>The most famous pasticceria in Polignano — legendary chocolate almonds and almond pastries. Great for a quick breakfast or afternoon snack. Always packed with locals.</p><div class="rm"><span class="pt">€ Budget</span><span style="font-size:12px;color:var(--mu)">📍 Piazza Vittorio Emanuele II, Polignano</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Caffe+Tripoli+Polignano+a+Mare" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>Antiche Mura — Ostuni</h3><p>Charming restaurant in Ostuni's white historic centre. Good vegetarian pasta — orecchiette with vegetables, bruschette with local tomatoes, seasonal antipasti with excellent Pugliese olive oil.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via Cattedrale, Ostuni</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Ostuni+restaurant+centro+storico" class="lk lkm">📍 Map</a></div></div>
+  </div>
+</div>
+
+<!-- MAY 24 FLIGHT -->
+<div id="t10" class="pg">
+  <div class="dh">
+    <div class="dlb">May 24, 2026 · Departure Day</div>
+    <div class="dtt">Bari → Nuremberg ✈️</div>
+    <div class="dsb">Bari Karol Wojtyla Airport (BRI) · Allow 2–3 hours at airport</div>
+  </div>
+  <div class="al ag"><span>✅</span><span><strong>Flight already booked!</strong> Your Ryanair flight FR7938 from Bari to Nuremberg is confirmed for May 24.</span></div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">✅ Your confirmed flight — Bari → Nuremberg</div>
+    <div style="background:#E8F5E9;border:2px solid #4CAF50;border-radius:14px;padding:14px 16px">
+      <div style="font-size:15px;font-weight:700;color:#1B5E20;margin-bottom:10px">✈️ Ryanair FR7938 — CONFIRMED</div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Route</span><span class="trv" style="color:#1B5E20">Bari (BRI) → Nuremberg (NUE)</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Date</span><span class="trv" style="color:#1B5E20">Sunday, 24 May 2026</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Departure</span><span class="trv" style="font-size:17px;font-weight:700;color:#1B5E20">10:45 from Bari (BRI)</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Arrival</span><span class="trv" style="font-size:17px;font-weight:700;color:#1B5E20">12:40 at Nuremberg (NUE)</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Mohit seat</span><span class="trv" style="color:#1B5E20">15A · 20kg checked bag · Plus fare</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Swadha seat</span><span class="trv" style="color:#1B5E20">15B · 20kg checked bag · Plus fare</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Reservation code</span><span class="trv" style="font-size:18px;font-weight:800;color:#C94B2A;letter-spacing:2px">X8IKWH</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15);border-bottom:none"><span class="trk" style="color:#2E7D32">Total paid</span><span class="trv" style="color:#1B5E20">€181.06</span></div>
+    </div>
+  </div>
+
+  <div class="al ac" style="margin-top:14px"><span>📱</span><span><strong>MUST download Ryanair App!</strong> Ryanair no longer accepts printed boarding passes. Your boarding pass is ONLY accessible through the Ryanair app. Download it now and check in online 2 days before departure.</span></div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Getting to Bari Airport — flight at 10:45am</div>
+    <div class="tb2">
+      <div class="tb2t">🚌 Bari → Airport — leave by 8:30am latest!</div>
+      <div class="tr"><span class="trk">Airport Bus from Bari Centrale</span><span class="trv">~30min · €4–5 · Depart by 8:30am</span></div>
+      <div class="tr"><span class="trk">Train (Ferrotramviaria from Bari Nord)</span><span class="trv">~20min · €5 · Depart by 8:45am</span></div>
+      <div class="tr"><span class="trk">Taxi (most reliable early morning)</span><span class="trv">~20min · €25–30 · Book evening before</span></div>
+      <div class="tr"><span class="trk">Arrive at airport by</span><span class="trv">9:00am latest (2hrs before 10:45 departure)</span></div>
+      <div class="tr"><span class="trk">Check-in closes</span><span class="trv">~10:15am (40 min before departure)</span></div>
+      <div class="tr"><span class="trk">Airport info</span><span class="trv"><a href="https://www.aeroportidipuglia.it" target="_blank">aeroportidipuglia.it</a></span></div>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">May 24 timings</div>
+    <div class="tg">
+      <div class="ti"><div class="tt">8:00am</div><div class="td">Depart Bari for airport</div></div>
+      <div class="ti"><div class="tt">8:30am</div><div class="td">Arrive Bari Airport (BRI)</div></div>
+      <div class="ti"><div class="tt">9–10am</div><div class="td">Check in bags + security</div></div>
+      <div class="ti"><div class="tt">10:45am</div><div class="td">✈️ FR7938 departs Bari</div></div>
+      <div class="ti"><div class="tt">12:40pm</div><div class="td">Arrive Nuremberg (NUE) 🏠</div></div>
+      <div class="ti"><div class="tt">~1:30pm</div><div class="td">Train/bus Nuremberg → Augsburg</div></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">Last morning in Bari</div>
+    <div class="cards">
+      <div class="card t"><div class="ctop"><h3>🍞 Final Breakfast — Focaccia Barese</h3><span class="bk bf">€1–2</span></div><p>One last warm focaccia barese from a local bakery in Bari Vecchia. The best possible send-off from Puglia. Ready from 7am. You'll be dreaming about it on the plane home.</p><div class="lks"><a href="https://maps.google.com/?q=Bari+Vecchia+Bari" class="lk lkm">📍 Bari Vecchia</a></div></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">📊 Complete trip cost summary</div>
+    <div class="cg">
+      <div class="cc"><h3>May 14 · Journey</h3><p>Augsburg→Munich €10 · Munich→Rome ~€60 · Rome→Naples €25</p><div class="tot">~€95–130pp</div></div>
+      <div class="cc ct"><h3>May 15 · Naples D1</h3><p>Sotterranea €15 · Palace €10 · Sant'Elmo €5 · Unico €4.50</p><div class="tot">~€32–38pp</div></div>
+      <div class="cc ca"><h3>May 16 · Sorrento+Amalfi</h3><p>Train €3.50 · Ferries ~€33 · Return €6 · Sights ~€7</p><div class="tot">~€42–50pp</div></div>
+      <div class="cc cb"><h3>May 17 · Procida</h3><p>Ferry return €24–28 · Bus €2 · Sights free</p><div class="tot">~€26–32pp</div></div>
+      <div class="cc cp"><h3>May 18 · Capri</h3><p>Ferry return €44 · Blue Grotto €18 · Solaro €12 · Gardens €1</p><div class="tot">~€75–80pp</div></div>
+      <div class="cc"><h3>May 19 · To Bari</h3><p>Frecciarossa Naples→Bari</p><div class="tot">~€25–35pp</div></div>
+      <div class="cc cg2"><h3>May 20 · Bari City</h3><p>Castle €4 · Most sights free · Street food</p><div class="tot">~€10–20pp</div></div>
+      <div class="cc ct"><h3>May 21 · Alberobello</h3><p>FSE train return €9 · Trullo €3 · Locorotondo €1.50</p><div class="tot">~€15–18pp</div></div>
+      <div class="cc ca"><h3>May 22 · Matera</h3><p>Bus return €9 · Cave churches ~€10</p><div class="tot">~€20–25pp</div></div>
+      <div class="cc cb"><h3>May 23 · Polignano+Ostuni</h3><p>All trains return ~€14 · Sights mostly free</p><div class="tot">~€15–20pp</div></div>
+    </div>
+    <div class="al ab"><span>💡</span><span><strong>Total transport + sights (10 days, excl. food):</strong> approx. <strong>€360–450pp.</strong> Puglia is significantly cheaper than Naples — budget €15–25pp per day for food in Bari.</span></div>
+  </div>
+</div>
+
+<!-- QUICK REF -->
+<div id="t11" class="pg">
+  <div class="dh">
+    <div class="dlb">Quick Reference</div>
+    <div class="dtt">Links, Tips &amp; Emergency Info</div>
+    <div class="dsb">Works offline · All map &amp; booking links open when you have signal</div>
+  </div>
+  <div class="sec">
+    <div class="stl">✅ All your confirmed bookings</div>
+    <div style="background:#E8F5E9;border:2px solid #4CAF50;border-radius:14px;padding:14px 16px">
+      <div style="font-size:14px;font-weight:700;color:#1B5E20;margin-bottom:10px">📋 Booking Reference Numbers</div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">🚆 RJ 83 München→Bologna</span><span class="trv" style="color:#1B5E20">09:33→16:08 · Car 262 · Seats 82 &amp; 84</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">🚆 Train Bologna→Naples</span><span class="trv" style="font-weight:800;color:#C94B2A;letter-spacing:1px">PNR: LB9ST5</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Train # · Seats</span><span class="trv" style="color:#1B5E20">Frecciarossa 9427 · 5A &amp; 8B · Car 2</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">🏠 Naples Airbnb</span><span class="trv" style="font-weight:800;color:#C94B2A;letter-spacing:1px">HM8K84BT3J</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Naples host · dates</span><span class="trv" style="color:#1B5E20">Giuseppina · May 14–19</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">🏠 Bari Airbnb</span><span class="trv" style="font-weight:800;color:#C94B2A;letter-spacing:1px">HMW4RQJYA8</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">Bari host · dates</span><span class="trv" style="color:#1B5E20">Chiara · May 19–24</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15)"><span class="trk" style="color:#2E7D32">✈️ Ryanair Bari→NUE</span><span class="trv" style="font-weight:800;color:#C94B2A;letter-spacing:1px">X8IKWH</span></div>
+      <div class="tr" style="border-color:rgba(27,94,32,0.15);border-bottom:none"><span class="trk" style="color:#2E7D32">Flight · seats · time</span><span class="trv" style="color:#1B5E20">FR7938 · 15A &amp; 15B · 10:45am May 24</span></div>
+    </div>
+  </div>
+
+  <div class="al ac" style="margin-top:14px"><span>📱</span><span><strong>Download Ryanair App NOW</strong> — boarding pass is ONLY on the app. Printed passes not accepted. Also check in online 2 days before May 24.</span></div>
+
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">📅 Complete trip at a glance</div>
+    <div class="qref">
+      <div class="qrt">May 2026 — Your Full Itinerary</div>
+      <div class="qr"><span>May 14 (Thu)</span><span>Augsburg → Naples by train 🚆</span></div>
+      <div class="qr"><span>May 15 (Fri)</span><span>Historic Naples 🏛️</span></div>
+      <div class="qr"><span>May 16 (Sat)</span><span>Sorrento + Amalfi Coast 🍋🌊</span></div>
+      <div class="qr"><span>May 17 (Sun)</span><span>Procida Island 🎣</span></div>
+      <div class="qr"><span>May 18 (Mon)</span><span>Capri — Blue Grotto, Monte Solaro 💎</span></div>
+      <div class="qr"><span>May 19 (Tue)</span><span>Train Naples → Bari 🚄</span></div>
+      <div class="qr"><span>May 20 (Wed)</span><span>Bari City — old town, basilica 🏛️</span></div>
+      <div class="qr"><span>May 21 (Thu)</span><span>Alberobello + Locorotondo 🏠</span></div>
+      <div class="qr"><span>May 22 (Fri)</span><span>Matera — ancient cave city 🪨</span></div>
+      <div class="qr"><span>May 23 (Sat)</span><span>Polignano a Mare + Ostuni 🌊</span></div>
+      <div class="qr"><span>May 24 (Sun)</span><span>Flight Bari → Nuremberg ✈️</span></div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">🔗 All booking links</div>
+    <div class="cards">
+      <div class="card t">
+        <h3 style="margin-bottom:9px">Book these in advance</h3>
+        <div class="lks" style="flex-direction:column;gap:7px">
+          <a href="https://www.bahn.de" class="lk lkb">🚆 DB Bahn — Augsburg to Munich</a>
+          <a href="https://www.trenitalia.com" class="lk lkb">🚄 Trenitalia — All Italian trains</a>
+          <a href="https://www.italotreno.it" class="lk lkb">🚄 Italo — Alternative trains</a>
+          <a href="https://www.nightjet.com" class="lk lkb">🌙 Nightjet — Munich→Rome overnight</a>
+          <a href="https://www.lanapolisotterranea.it" class="lk lkr">🕳️ Napoli Sotterranea</a>
+          <a href="https://www.caremar.it" class="lk lkb">⛴️ Caremar — Procida &amp; Capri ferries</a>
+          <a href="https://www.snav.it" class="lk lkb">⛴️ SNAV — Fast ferries Naples</a>
+          <a href="https://www.eavsrl.it" class="lk lkb">🚆 EAV — Circumvesuviana (Sorrento)</a>
+          <a href="https://www.positanoferries.it" class="lk lkb">⛴️ Positano Ferries — Amalfi Coast</a>
+          <a href="https://www.capriseggiovia.it" class="lk lkb">🚡 Monte Solaro Chairlift — Capri</a>
+          <a href="https://www.fseonline.it" class="lk lkb">🚂 FSE — Alberobello train from Bari</a>
+          <a href="https://www.fal-srl.it" class="lk lkb">🚌 FAL — Bus Bari to Matera</a>
+          <a href="https://www.google.com/flights" class="lk lkr">✈️ Google Flights — Bari to Nuremberg</a>
+          <a href="https://www.aeroportidipuglia.it" class="lk lkb">✈️ Bari Airport (BRI) info</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">💡 Top tips</div>
+    <div class="rc"><h3>Book Augsburg→Naples train ASAP</h3><p>Munich→Rome leg especially — EC/Railjet trains book up fast. Nightjet sleeper cabins sell out weeks in advance.</p></div>
+    <div class="rc"><h3>Circumvesuviana — protect your bag</h3><p>The Sorrento train is notorious for pickpockets. Keep valuables in a front zipped pocket at all times.</p></div>
+    <div class="rc"><h3>Blue Grotto — first thing on Capri day</h3><p>Take the 8:35am ferry and go to the Blue Grotto immediately. Queues build by 10am and it closes when seas are rough.</p></div>
+    <div class="rc"><h3>Orecchiette is the must-eat in Puglia</h3><p>Order orecchiette alle cime di rapa (orecchiette with turnip greens) everywhere in Bari, Alberobello and Matera. The definitive vegetarian dish of Puglia.</p></div>
+    <div class="rc"><h3>Matera bus — buy ticket day before</h3><p>The FAL bus from Bari to Matera fills up on weekends. Go to the FAL ticket office at Bari station the day before to buy your return ticket.</p></div>
+    <div class="rc"><h3>Castel Sant'Elmo — go at sunset</h3><p>Only €2.50 after 4pm and the golden-hour panorama over Naples Bay is the trip highlight. Don't miss it on Day 1.</p></div>
+  </div>
+  <div class="sec" style="margin-top:14px">
+    <div class="stl">📞 Emergency &amp; useful phrases</div>
+    <div class="qref">
+      <div class="qr"><span>Emergency (Italy)</span><span>112</span></div>
+      <div class="qr"><span>Police</span><span>113</span></div>
+      <div class="qr"><span>Ambulance</span><span>118</span></div>
+      <div class="qr"><span>"Is it vegetarian?"</span><span>È vegetariano?</span></div>
+      <div class="qr"><span>"Where is the toilet?"</span><span>Dove è il bagno?</span></div>
+      <div class="qr"><span>"The bill, please"</span><span>Il conto, per favore</span></div>
+      <div class="qr"><span>"Thank you very much"</span><span>Grazie mille</span></div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<div class="footer">
+  <strong>Italy Trip · Augsburg → Naples → Bari → Nuremberg · May 14–24, 2026</strong><br>
+  Save to phone · Works offline · No JavaScript needed · Links open when you have signal<br>
+  <span style="font-size:11px;margin-top:4px;display:block;opacity:0.6">Created with Claude · claude.ai</span>
+</div>
+
+</body>
+</html>
