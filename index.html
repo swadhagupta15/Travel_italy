@@ -1109,6 +1109,41 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 <script>
 var mapInited = false;
 var map, allMarkers = [], markersByGroup = {d1:[],d2:[],d3:[],d4:[]};
+var GUIDE_PLACES = [
+  {g:'d1',lat:40.8375,lng:14.2544,e:'⛴️',t:'Molo Beverello Ferry Port',d:'Ferries to Capri, Procida, Positano · 7am–8pm'},
+  {g:'d1',lat:40.8500,lng:14.2602,e:'🏘️',t:'Spaccanapoli',d:'Historic street · FREE'},
+  {g:'d1',lat:40.8358,lng:14.2486,e:'🏛️',t:'Piazza del Plebiscito',d:'Grand main square · FREE'},
+  {g:'d1',lat:40.8283,lng:14.2476,e:'🏰',t:"Castel dell'Ovo",d:'Sea castle · FREE'},
+  {g:'d1',lat:40.8423,lng:14.2293,e:'🌅',t:'Castel Sant\'Elmo',d:'Best panorama in Naples · €2.50 after 4pm'},
+  {g:'d1',lat:40.8508,lng:14.2576,e:'🍕',t:'L\'Antica Pizzeria da Michele',d:'Restaurant · Via Cesare Sersale 1 · €Budget'},
+  {g:'d1',lat:40.8503,lng:14.2567,e:'🍕',t:'Pizzeria Gino Sorbillo',d:'Restaurant · Via dei Tribunali 32 · €€'},
+  {g:'d2',lat:40.6262,lng:14.3757,e:'🍋',t:'Sorrento Old Town',d:'Morning stop · limoncello tasting · FREE'},
+  {g:'d2',lat:40.6266,lng:14.3748,e:'🌀',t:'Vallone dei Mulini — Sorrento',d:'Hidden natural gorge · FREE'},
+  {g:'d2',lat:40.6278,lng:14.4870,e:'🏖️',t:'Positano — Spiaggia Grande',d:'Iconic cliffside beach · FREE'},
+  {g:'d2',lat:40.6284,lng:14.4868,e:'⛪',t:'Chiesa Santa Maria Assunta',d:'Tiled dome church · FREE · 9:30am–8pm'},
+  {g:'d2',lat:40.6303,lng:14.4846,e:'🌿',t:'Casa e Bottega ⭐',d:'Restaurant · Viale Pasitea 100 · MONDAY CLOSED · €€'},
+  {g:'d2',lat:40.6345,lng:14.6030,e:'⛪',t:'Amalfi Cathedral (Duomo)',d:'Arab-Norman cathedral · FREE · Cloister €3'},
+  {g:'d2',lat:40.6439,lng:14.5914,e:'🌿',t:'Valle dei Mulini — Amalfi',d:'Waterfall hike trail · FREE'},
+  {g:'d2',lat:40.6342,lng:14.6030,e:'⭐',t:'SENSI Restaurant ⭐ Michelin',d:'Best vegetarian dinner · TUESDAY CLOSED · €€€ · Reservation required!'},
+  {g:'d2',lat:40.6260,lng:14.3750,e:'🍽️',t:'La Basilica — Sorrento',d:'Restaurant · Piazza Sant\'Antonino 28 · €€'},
+  {g:'d2',lat:40.6275,lng:14.4875,e:'🍽️',t:'Chez Black — Positano',d:'Restaurant · Via del Brigantino 19 · on the beach! · €€€'},
+  {g:'d2',lat:40.6348,lng:14.6025,e:'🍽️',t:'Trattoria Il Mulino — Amalfi',d:'Restaurant · Via delle Cartiere 36 · €€'},
+  {g:'d3',lat:40.7636,lng:14.0156,e:'🏘️',t:'Marina Grande — Procida',d:'Ferry port · pastel houses · arrive here'},
+  {g:'d3',lat:40.7614,lng:14.0203,e:'📸',t:'Panoramica sulla Corricella',d:'Best viewpoint on Procida · 4.9⭐ · FREE'},
+  {g:'d3',lat:40.7601,lng:14.0215,e:'🎣',t:'Marina Corricella',d:'Colourful fishing village · FREE'},
+  {g:'d3',lat:40.7543,lng:14.0039,e:'🏖️',t:'Spiaggia di Ciraccio',d:'Best beach on Procida · FREE'},
+  {g:'d3',lat:40.7602,lng:14.0218,e:'🍽️',t:'La Conchiglia',d:'Restaurant · Marina Corricella 33 · tables on water! · €€'},
+  {g:'d3',lat:40.7570,lng:14.0070,e:'🍽️',t:'Ristorante Crescenzo',d:'Restaurant · Via Marina Chiaiolella 33 · €€'},
+  {g:'d4',lat:40.5557,lng:14.2421,e:'⛴️',t:'Marina Grande — Capri Port',d:'Ferry arrives here · funicular to Capri Town'},
+  {g:'d4',lat:40.5610,lng:14.2056,e:'🔵',t:'Blue Grotto (Grotta Azzurra)',d:'GO FIRST! · Rowboat inside sea cave · €18 · closes in rough seas'},
+  {g:'d4',lat:40.5555,lng:14.2215,e:'🪑',t:'Monte Solaro Chairlift',d:'Cable car to summit · 360° views · €12 return · 9:30am–4pm'},
+  {g:'d4',lat:40.5513,lng:14.2432,e:'☕',t:'La Piazzetta — Capri Town',d:'Iconic glamorous square · gelato · FREE'},
+  {g:'d4',lat:40.5473,lng:14.2432,e:'🌺',t:'Gardens of Augustus',d:'Faraglioni view · €1 · 9am–8pm'},
+  {g:'d4',lat:40.5402,lng:14.2529,e:'🪨',t:'Faraglioni Rocks',d:'Iconic limestone pillars · best photo spot · FREE · 4.9⭐'},
+  {g:'d4',lat:40.5451,lng:14.2349,e:'🏖️',t:'Marina Piccola Beach',d:'Best swimming beach · crystal clear water · FREE'},
+  {g:'d4',lat:40.5556,lng:14.2215,e:'🌿',t:'Columbus Capri ⭐ (Restaurant)',d:'Salita Caposcuro 8 · WEDNESDAY CLOSED · organic · great views · €€'},
+  {g:'d4',lat:40.5514,lng:14.2431,e:'🍝',t:'Al Grottino ⭐ (Restaurant)',d:'Via Longano 27 · since 1937 · homemade pasta · €€'}
+];
 
 // Dynamically load Leaflet only when map tab is clicked
 function loadLeaflet(cb){
@@ -1152,53 +1187,10 @@ function initMap(){
     attribution:'© OpenStreetMap',maxZoom:18
   }).addTo(map);
 
-  var places = [
-    // Naples d1 #C94B2A
-    {g:'d1',lat:40.8375,lng:14.2544,e:'⛴️',t:'Molo Beverello Ferry Port',d:'Ferries to Capri, Procida, Positano · 7am–8pm'},
-    {g:'d1',lat:40.8500,lng:14.2602,e:'🏘️',t:'Spaccanapoli',d:'Historic street · FREE'},
-    {g:'d1',lat:40.8358,lng:14.2486,e:'🏛️',t:'Piazza del Plebiscito',d:'Grand main square · FREE'},
-    {g:'d1',lat:40.8283,lng:14.2476,e:'🏰',t:"Castel dell'Ovo",d:'Sea castle · FREE'},
-    {g:'d1',lat:40.8423,lng:14.2293,e:'🌅',t:'Castel Sant\'Elmo',d:'Best panorama in Naples · €2.50 after 4pm'},
-    {g:'d1',lat:40.8508,lng:14.2576,e:'🍕',t:'L\'Antica Pizzeria da Michele',d:'Restaurant · Via Cesare Sersale 1 · €Budget'},
-    {g:'d1',lat:40.8503,lng:14.2567,e:'🍕',t:'Pizzeria Gino Sorbillo',d:'Restaurant · Via dei Tribunali 32 · €€'},
-
-    // Sorrento+Amalfi d2 #0F7A5C
-    {g:'d2',lat:40.6262,lng:14.3757,e:'🍋',t:'Sorrento Old Town',d:'Morning stop · limoncello tasting · FREE'},
-    {g:'d2',lat:40.6266,lng:14.3748,e:'🌀',t:'Vallone dei Mulini — Sorrento',d:'Hidden natural gorge · FREE'},
-    {g:'d2',lat:40.6278,lng:14.4870,e:'🏖️',t:'Positano — Spiaggia Grande',d:'Iconic cliffside beach · FREE'},
-    {g:'d2',lat:40.6284,lng:14.4868,e:'⛪',t:'Chiesa Santa Maria Assunta',d:'Tiled dome church · FREE · 9:30am–8pm'},
-    {g:'d2',lat:40.6303,lng:14.4846,e:'🌿',t:'Casa e Bottega ⭐',d:'Restaurant · Viale Pasitea 100 · MONDAY CLOSED · €€'},
-    {g:'d2',lat:40.6345,lng:14.6030,e:'⛪',t:'Amalfi Cathedral (Duomo)',d:'Arab-Norman cathedral · FREE · Cloister €3'},
-    {g:'d2',lat:40.6439,lng:14.5914,e:'🌿',t:'Valle dei Mulini — Amalfi',d:'Waterfall hike trail · FREE'},
-    {g:'d2',lat:40.6342,lng:14.6030,e:'⭐',t:'SENSI Restaurant ⭐ Michelin',d:'Best vegetarian dinner · TUESDAY CLOSED · €€€ · Reservation required!'},
-    {g:'d2',lat:40.6260,lng:14.3750,e:'🍽️',t:'La Basilica — Sorrento',d:'Restaurant · Piazza Sant\'Antonino 28 · €€'},
-    {g:'d2',lat:40.6275,lng:14.4875,e:'🍽️',t:'Chez Black — Positano',d:'Restaurant · Via del Brigantino 19 · on the beach! · €€€'},
-    {g:'d2',lat:40.6348,lng:14.6025,e:'🍽️',t:'Trattoria Il Mulino — Amalfi',d:'Restaurant · Via delle Cartiere 36 · €€'},
-
-    // Procida d3 #5340B0
-    {g:'d3',lat:40.7636,lng:14.0156,e:'🏘️',t:'Marina Grande — Procida',d:'Ferry port · pastel houses · arrive here'},
-    {g:'d3',lat:40.7614,lng:14.0203,e:'📸',t:'Panoramica sulla Corricella',d:'Best viewpoint on Procida · 4.9⭐ · FREE'},
-    {g:'d3',lat:40.7601,lng:14.0215,e:'🎣',t:'Marina Corricella',d:'Colourful fishing village · FREE'},
-    {g:'d3',lat:40.7543,lng:14.0039,e:'🏖️',t:'Spiaggia di Ciraccio',d:'Best beach on Procida · FREE'},
-    {g:'d3',lat:40.7602,lng:14.0218,e:'🍽️',t:'La Conchiglia',d:'Restaurant · Marina Corricella 33 · tables on water! · €€'},
-    {g:'d3',lat:40.7570,lng:14.0070,e:'🍽️',t:'Ristorante Crescenzo',d:'Restaurant · Via Marina Chiaiolella 33 · €€'},
-
-    // Capri d4 #1A5FA8
-    {g:'d4',lat:40.5557,lng:14.2421,e:'⛴️',t:'Marina Grande — Capri Port',d:'Ferry arrives here · funicular to Capri Town'},
-    {g:'d4',lat:40.5610,lng:14.2056,e:'🔵',t:'Blue Grotto (Grotta Azzurra)',d:'GO FIRST! · Rowboat inside sea cave · €18 · closes in rough seas'},
-    {g:'d4',lat:40.5555,lng:14.2215,e:'🪑',t:'Monte Solaro Chairlift',d:'Cable car to summit · 360° views · €12 return · 9:30am–4pm'},
-    {g:'d4',lat:40.5513,lng:14.2432,e:'☕',t:'La Piazzetta — Capri Town',d:'Iconic glamorous square · gelato · FREE'},
-    {g:'d4',lat:40.5473,lng:14.2432,e:'🌺',t:'Gardens of Augustus',d:'Faraglioni view · €1 · 9am–8pm'},
-    {g:'d4',lat:40.5402,lng:14.2529,e:'🪨',t:'Faraglioni Rocks',d:'Iconic limestone pillars · best photo spot · FREE · 4.9⭐'},
-    {g:'d4',lat:40.5451,lng:14.2349,e:'🏖️',t:'Marina Piccola Beach',d:'Best swimming beach · crystal clear water · FREE'},
-    {g:'d4',lat:40.5556,lng:14.2215,e:'🌿',t:'Columbus Capri ⭐ (Restaurant)',d:'Salita Caposcuro 8 · WEDNESDAY CLOSED · organic · great views · €€'},
-    {g:'d4',lat:40.5514,lng:14.2431,e:'🍝',t:'Al Grottino ⭐ (Restaurant)',d:'Via Longano 27 · since 1937 · homemade pasta · €€'},
-  ];
-
   var colors = {d1:'#C94B2A', d2:'#0F7A5C', d3:'#5340B0', d4:'#1A5FA8'};
   var restEmojis = ['🍕','🌿','🍝','⭐','🍽️'];
 
-  places.forEach(function(p){
+  GUIDE_PLACES.forEach(function(p){
     var isResto = restEmojis.indexOf(p.e) >= 0;
     var col = isResto ? '#E8A060' : colors[p.g];
     var m = L.marker([p.lat,p.lng],{icon:mkIcon(col,p.e)})
@@ -1260,6 +1252,7 @@ function flyTo(lat,lng,zoom){
   <div class="ai-chips">
     <button class="ai-chip" type="button" data-q="Aaj ka best short plan batao">Plan</button>
     <button class="ai-chip" type="button" data-q="Nearby food with address and map link">Food + Map</button>
+    <button class="ai-chip" type="button" data-action="location">Use My Location</button>
     <button class="ai-chip" type="button" data-q="Bari weather">Weather</button>
     <button class="ai-chip" type="button" data-q="Emergency numbers and nearest help">Help</button>
   </div>
@@ -1355,6 +1348,51 @@ if ('serviceWorker' in navigator) {
     if (response && response.message && typeof response.message.content === 'string') return response.message.content;
     if (response && response.content && typeof response.content === 'string') return response.content;
     return '';
+  }
+
+  function distanceKm(aLat, aLng, bLat, bLng) {
+    var earth = 6371;
+    var dLat = (bLat - aLat) * Math.PI / 180;
+    var dLng = (bLng - aLng) * Math.PI / 180;
+    var s1 = Math.sin(dLat / 2);
+    var s2 = Math.sin(dLng / 2);
+    var a = s1 * s1 + Math.cos(aLat * Math.PI / 180) * Math.cos(bLat * Math.PI / 180) * s2 * s2;
+    return earth * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  }
+
+  function mapsLink(lat, lng, title) {
+    return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(lat + ',' + lng + ' ' + title);
+  }
+
+  function nearbyFromCoords(lat, lng) {
+    var places = (window.GUIDE_PLACES || []).map(function (place) {
+      return Object.assign({}, place, { distance: distanceKm(lat, lng, place.lat, place.lng) });
+    }).sort(function (a, b) {
+      return a.distance - b.distance;
+    });
+    var nearest = places.slice(0, 5);
+    if (!nearest.length) return '**No saved places found.** Try the Map tab.';
+    var far = nearest[0].distance > 30;
+    return (far ? '**You seem far from the saved Naples/Amalfi/Procida/Capri map points.** Nearest saved guide places:\n' : '**Nearby from your location:**\n') +
+      nearest.map(function (place) {
+        var dist = place.distance < 1 ? Math.round(place.distance * 1000) + ' m' : place.distance.toFixed(1) + ' km';
+        return '- **' + place.t + '** — ' + dist + ' · ' + place.d + ' [Open Map](' + mapsLink(place.lat, place.lng, place.t) + ')';
+      }).join('\n');
+  }
+
+  function useMyLocation() {
+    setOpen(true);
+    addMsg('user', 'Use my location');
+    var thinking = addMsg('bot', '**Getting your location...**');
+    if (!navigator.geolocation) {
+      thinking.innerHTML = formatAnswer('**Location not supported.** Type your current place, e.g. “I am near Bari Centrale”.');
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      thinking.innerHTML = formatAnswer(nearbyFromCoords(pos.coords.latitude, pos.coords.longitude));
+    }, function () {
+      thinking.innerHTML = formatAnswer('**Location permission denied.** Type your current place, e.g. “I am near Naples Centrale”, and I’ll use guide map links.');
+    }, { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 });
   }
 
   async function askPuterAI(question) {
@@ -1476,6 +1514,10 @@ if ('serviceWorker' in navigator) {
 
   chips.forEach(function (chip) {
     chip.addEventListener('click', function () {
+      if (chip.getAttribute('data-action') === 'location') {
+        useMyLocation();
+        return;
+      }
       setOpen(true);
       input.value = chip.getAttribute('data-q') || '';
       form.dispatchEvent(new Event('submit', { cancelable: true }));
