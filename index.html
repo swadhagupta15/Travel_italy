@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Italy 2026">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#C94B2A">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <title>Italy Trip · May 14–24, 2026</title>
 <style>
 :root{--c:#C94B2A;--cl:#F5E8E3;--t:#0F7A5C;--tl:#E0F2EB;--a:#A86A10;--al:#FDF0D8;--b:#1A5FA8;--bl:#E5EEF9;--p:#5340B0;--pl:#EEEDFB;--g:#2E7D32;--gl:#E8F5E9;--bg:#FDFBF8;--w:#fff;--tx:#1C1C1A;--mu:#6B6B6B;--bd:#E8E5DF}
@@ -142,6 +147,21 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 .footer{background:#1C1C1A;color:rgba(255,255,255,0.55);padding:20px 18px;font-size:12px;text-align:center}
 .footer strong{color:rgba(255,255,255,0.9)}
 @media(max-width:360px){.hero h1{font-size:19px}.cg{grid-template-columns:1fr}}
+.ai-toggle{position:fixed;right:16px;bottom:16px;z-index:90;width:54px;height:54px;border:0;border-radius:50%;background:#0F7A5C;color:#fff;font-size:24px;box-shadow:0 10px 28px rgba(0,0,0,.25);cursor:pointer}
+.ai-panel{position:fixed;right:14px;bottom:82px;z-index:91;width:min(390px,calc(100vw - 28px));height:min(620px,calc(100vh - 112px));background:#fff;border:1px solid var(--bd);border-radius:14px;box-shadow:0 18px 55px rgba(0,0,0,.28);display:none;overflow:hidden}
+.ai-panel.open{display:flex;flex-direction:column}
+.ai-head{background:#1C1C1A;color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.ai-title{font-size:14px;font-weight:700}.ai-sub{font-size:11px;color:rgba(255,255,255,.68);margin-top:1px}
+.ai-close{width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.ai-msgs{flex:1;overflow:auto;background:#F7F4EF;padding:12px;display:flex;flex-direction:column;gap:9px}
+.ai-msg{max-width:86%;padding:9px 11px;border-radius:12px;font-size:13px;line-height:1.45;white-space:pre-wrap}
+.ai-msg.bot{background:#fff;border:1px solid var(--bd);align-self:flex-start;color:var(--tx)}
+.ai-msg.user{background:#0F7A5C;color:#fff;align-self:flex-end}
+.ai-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--bd);background:#fff}
+.ai-input{flex:1;border:1px solid var(--bd);border-radius:20px;padding:10px 12px;font-size:14px;min-width:0}
+.ai-send{border:0;border-radius:20px;background:#C94B2A;color:#fff;padding:0 15px;font-weight:700;cursor:pointer}
+.ai-note{font-size:11px;color:var(--mu);padding:0 12px 10px;background:#fff}
+@media(max-width:520px){.ai-panel{right:0;bottom:0;width:100vw;height:100vh;border-radius:0}.ai-toggle{right:14px;bottom:14px}}
 </style>
 </head>
 <body>
@@ -825,6 +845,127 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
   Save to phone · Works offline · No JavaScript needed · Links open when you have signal<br>
   <span style="font-size:11px;margin-top:4px;display:block;opacity:0.6">Created with Claude · claude.ai</span>
 </div>
+
+<button class="ai-toggle" id="aiToggle" type="button" aria-label="Open travel assistant">💬</button>
+<section class="ai-panel" id="aiPanel" aria-label="Italy travel assistant">
+  <div class="ai-head">
+    <div>
+      <div class="ai-title">Italy Trip Assistant</div>
+      <div class="ai-sub">Ask in Hindi, English, or Hinglish</div>
+    </div>
+    <button class="ai-close" id="aiClose" type="button" aria-label="Close assistant">×</button>
+  </div>
+  <div class="ai-msgs" id="aiMsgs">
+    <div class="ai-msg bot">Hi. Ask me about Naples, Bari, ferries, trains, food, timings, packing, or your day plan.</div>
+  </div>
+  <form class="ai-form" id="aiForm">
+    <input class="ai-input" id="aiInput" type="text" autocomplete="off" placeholder="Ask about your trip..." required>
+    <button class="ai-send" type="submit">Send</button>
+  </form>
+  <div class="ai-note">Guide search works offline. Weather and currency need internet.</div>
+</section>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('./sw.js').catch(function () {});
+  });
+}
+
+(function () {
+  var panel = document.getElementById('aiPanel');
+  var toggle = document.getElementById('aiToggle');
+  var close = document.getElementById('aiClose');
+  var form = document.getElementById('aiForm');
+  var input = document.getElementById('aiInput');
+  var msgs = document.getElementById('aiMsgs');
+  var history = [];
+  var pageContext = document.body.innerText.replace(/\s+/g, ' ').slice(0, 9000);
+
+  function addMsg(role, text) {
+    var el = document.createElement('div');
+    el.className = 'ai-msg ' + (role === 'user' ? 'user' : 'bot');
+    el.textContent = text;
+    msgs.appendChild(el);
+    msgs.scrollTop = msgs.scrollHeight;
+    return el;
+  }
+
+  function setOpen(open) {
+    panel.classList.toggle('open', open);
+    if (open) setTimeout(function () { input.focus(); }, 50);
+  }
+
+  async function getWeather(question) {
+    var isBari = /bari|matera|alberobello|polignano|ostuni/i.test(question);
+    var place = isBari ? 'Bari' : 'Naples';
+    var coords = isBari ? 'latitude=41.12&longitude=16.87' : 'latitude=40.85&longitude=14.27';
+    var url = 'https://api.open-meteo.com/v1/forecast?' + coords + '&current=temperature_2m,weather_code,wind_speed_10m&timezone=Europe%2FRome';
+    var data = await fetch(url).then(function (r) { return r.json(); });
+    var current = data.current || {};
+    return 'Live weather for ' + place + ': ' + current.temperature_2m + '°C, wind ' + current.wind_speed_10m + ' km/h. Weather code: ' + current.weather_code + '. For rain/hourly details, check a weather app before leaving.';
+  }
+
+  async function getCurrency() {
+    var data = await fetch('https://api.frankfurter.app/latest?from=EUR&to=INR').then(function (r) { return r.json(); });
+    return 'Live EUR to INR rate: 1 EUR ≈ ' + data.rates.INR.toFixed(2) + ' INR. Rate date: ' + data.date + '. Your bank/card may use a slightly different rate.';
+  }
+
+  function findGuideMatches(question) {
+    var words = question.toLowerCase().split(/[^a-z0-9]+/).filter(function (word) {
+      return word.length > 3 && !/what|where|when|kaise|kya|karna|hai|mein|about|tell|plan|day/.test(word);
+    });
+    var blocks = Array.prototype.slice.call(document.querySelectorAll('.card,.rc,.tb2,.qref,.al'));
+    var scored = blocks.map(function (block) {
+      var text = block.innerText.replace(/\s+/g, ' ').trim();
+      var lower = text.toLowerCase();
+      var score = words.reduce(function (total, word) {
+        return total + (lower.indexOf(word) >= 0 ? 1 : 0);
+      }, 0);
+      return { score: score, text: text };
+    }).filter(function (item) {
+      return item.score > 0 && item.text.length > 20;
+    }).sort(function (a, b) {
+      return b.score - a.score;
+    }).slice(0, 3);
+
+    if (!scored.length) {
+      return 'I could not find an exact match in the guide. Try asking with place names like Naples, Bari, Capri, Procida, Matera, ferry, train, restaurant, or budget.';
+    }
+
+    return 'Guide se best matches:\n' + scored.map(function (item) {
+      return '- ' + item.text.slice(0, 240) + (item.text.length > 240 ? '...' : '');
+    }).join('\n');
+  }
+
+  async function answerQuestion(question) {
+    if (/weather|mausam|temperature|rain|barish/i.test(question)) return getWeather(question);
+    if (/eur|inr|currency|exchange|rate|rupee|euro/i.test(question)) return getCurrency();
+    return findGuideMatches(question);
+  }
+
+  toggle.addEventListener('click', function () { setOpen(!panel.classList.contains('open')); });
+  close.addEventListener('click', function () { setOpen(false); });
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    var question = input.value.trim();
+    if (!question) return;
+    input.value = '';
+    addMsg('user', question);
+    history.push({ role: 'user', content: question });
+    var thinking = addMsg('bot', 'Checking your guide...');
+
+    try {
+      var answer = await answerQuestion(question);
+      thinking.textContent = answer || 'I could not find that in the guide. Try a place or topic name.';
+      history.push({ role: 'assistant', content: thinking.textContent });
+    } catch (error) {
+      thinking.textContent = 'Live info is not reachable right now. The offline guide still works; try again when internet is stable.';
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
