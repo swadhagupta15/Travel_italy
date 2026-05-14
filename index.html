@@ -155,6 +155,7 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 .ai-panel.open{display:flex;flex-direction:column}
 .ai-head{background:#1C1C1A;color:#fff;padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px}
 .ai-title{font-size:14px;font-weight:700}.ai-sub{font-size:11px;color:rgba(255,255,255,.68);margin-top:1px}
+.ai-actions{display:flex;gap:6px;align-items:center}
 .ai-close{width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .ai-msgs{flex:1;overflow:auto;background:#F7F4EF;padding:12px;display:flex;flex-direction:column;gap:9px}
 .ai-msg{max-width:88%;padding:10px 12px;border-radius:12px;font-size:13px;line-height:1.45;white-space:normal}
@@ -1244,7 +1245,10 @@ function flyTo(lat,lng,zoom){
       <div class="ai-title">Italy Trip Assistant</div>
       <div class="ai-sub">Ask in Hindi, English, or Hinglish</div>
     </div>
-    <button class="ai-close" id="aiClose" type="button" aria-label="Close assistant">×</button>
+    <div class="ai-actions">
+      <button class="ai-close" id="aiMinimize" type="button" aria-label="Minimize assistant">−</button>
+      <button class="ai-close" id="aiClose" type="button" aria-label="Close assistant">×</button>
+    </div>
   </div>
   <div class="ai-msgs" id="aiMsgs">
     <div class="ai-msg bot"><p><strong>Hi.</strong> Ask me about Naples, Bari, maps, ferries, trains, food, timings, packing, or your day plan.</p></div>
@@ -1275,6 +1279,7 @@ if ('serviceWorker' in navigator) {
   var panel = document.getElementById('aiPanel');
   var toggle = document.getElementById('aiToggle');
   var close = document.getElementById('aiClose');
+  var minimize = document.getElementById('aiMinimize');
   var form = document.getElementById('aiForm');
   var input = document.getElementById('aiInput');
   var msgs = document.getElementById('aiMsgs');
@@ -1510,6 +1515,7 @@ if ('serviceWorker' in navigator) {
   }
 
   toggle.addEventListener('click', function () { setOpen(!panel.classList.contains('open')); });
+  minimize.addEventListener('click', function () { setOpen(false); });
   close.addEventListener('click', function () { setOpen(false); });
 
   chips.forEach(function (chip) {
