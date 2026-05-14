@@ -35,6 +35,8 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 #r9:checked~.content #t9,
 #r10:checked~.content #t10,
 #r11:checked~.content #t11{display:block}
+/* Map tab is outside .content, needs sibling selector */
+#r12:checked~#t12{display:block}
 
 /* Active tab label styling */
 #r0:checked~.nav label[for="r0"],
@@ -48,7 +50,8 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 #r8:checked~.nav label[for="r8"],
 #r9:checked~.nav label[for="r9"],
 #r10:checked~.nav label[for="r10"],
-#r11:checked~.nav label[for="r11"]{background:var(--c);color:#fff;border-color:var(--c)}
+#r11:checked~.nav label[for="r11"],
+#r12:checked~.nav label[for="r12"]{background:var(--c);color:#fff;border-color:var(--c)}
 /* ===== END CSS TABS ===== */
 
 /* HERO */
@@ -179,6 +182,7 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 <input type="radio" name="tab" id="r9">
 <input type="radio" name="tab" id="r10">
 <input type="radio" name="tab" id="r11">
+<input type="radio" name="tab" id="r12">
 
 <div class="hero">
   <div class="hbadge">🇩🇪→🇮🇹→🇩🇪 Complete Italy Trip</div>
@@ -207,6 +211,7 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
     <label for="r9">🌊 Polignano D4</label>
     <label for="r10">✈️ May 24</label>
     <label for="r11">📋 Quick Ref</label>
+    <label for="r12">🗺️ Map</label>
   </div>
 </div>
 
@@ -395,6 +400,8 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
   <div class="div"></div>
   <div class="sec" style="margin-top:14px">
     <div class="stl">🥗 Vegetarian restaurants</div>
+    <div class="rc"><h3>🌿 Casa e Bottega — Positano ⭐ Recommended</h3><p>Farm-fresh vegetarian food in a beautiful plant-filled setting. Famous for Melanzane alla Parmigiana (baked eggplant), fresh ravioli with walnuts, and sbriciolata cake. Rating 4.6⭐ (1,370 reviews). Booking recommended. <strong>⚠️ Closed Mondays.</strong></p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Viale Pasitea 100, Positano · 📞 +39 338 709 7500</span></div><div class="lks" style="margin-top:7px"><a href="http://www.casaebottegapositano.it" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Casa+e+Bottega+Positano+Viale+Pasitea+100" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>🌿 SENSI Restaurant — Amalfi ⭐ Best Dinner</h3><p>Amalfi's finest vegetarian-friendly restaurant — Michelin recommended! Sea-view terrace with fairy lights. Offers a full plant-based tasting menu (free of salt, sugar, flour, dairy) on request. Honeymooners and vegans rave about this place. Rating 4.6⭐. <strong>Reservation essential. ⚠️ Closed Tuesdays.</strong></p><div class="rm"><span class="pt">€€€ Upscale · €50–80pp</span><span style="font-size:12px;color:var(--mu)">📍 Via Pietro Comite 4, Amalfi · 📞 +39 089 871183</span></div><div class="lks" style="margin-top:7px"><a href="https://sensiamalfi.it" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Sensi+Restaurant+Amalfi+Via+Pietro+Comite" class="lk lkm">📍 Map</a></div></div>
     <div class="rc"><h3>La Basilica — Sorrento</h3><p>Lively pizzeria on Piazza Sant'Antonino. Good pasta al limone, caprese. Great for a quick morning snack before the ferry.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Piazza Sant'Antonino 28, Sorrento</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=La+Basilica+Sorrento" class="lk lkm">📍 Map</a></div></div>
     <div class="rc"><h3>Chez Black — Positano</h3><p>Iconic restaurant right on Spiaggia Grande. Famous pasta al limone and bufala margherita pizza. Arrive before 12:30pm.</p><div class="rm"><span class="pt">€€€ Upscale</span><span style="font-size:12px;color:var(--mu)">📍 Via del Brigantino 19, Positano</span></div><div class="lks" style="margin-top:7px"><a href="https://www.chezblack.it" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Chez+Black+Positano" class="lk lkm">📍 Map</a></div></div>
     <div class="rc"><h3>Trattoria Il Mulino — Amalfi</h3><p>Authentic family trattoria off the main square. Very good vegetarian pasta and melanzane parmigiana. Best value in Amalfi.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via delle Cartiere 36, Amalfi</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Trattoria+Il+Mulino+Amalfi" class="lk lkm">📍 Map</a></div></div>
@@ -485,6 +492,8 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
   <div class="div"></div>
   <div class="sec" style="margin-top:14px">
     <div class="stl">🥗 Vegetarian restaurants — Capri</div>
+    <div class="rc"><h3>🌿 Al Grottino — Capri Town ⭐ Recommended</h3><p>Family-run restaurant since 1937 — one of Capri Town's most beloved. Homemade pasta, gnocchi al pomodoro, ravioli caprese with ricotta &amp; marjoram. Warm, hospitable owner. 970+ Google reviews, 4.4⭐. Open lunch &amp; dinner daily.</p><div class="rm"><span class="pt">€€ Mid · €30–45pp</span><span style="font-size:12px;color:var(--mu)">📍 Via Longano 27, Capri Town · 📞 +39 081 837 0584</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Al+Grottino+Via+Longano+27+Capri" class="lk lkm">📍 Map</a></div></div>
+    <div class="rc"><h3>🌿 Columbus Capri — Anacapri ⭐ Recommended</h3><p>Stylish terrace restaurant right next to Monte Solaro chairlift — perfect for lunch after the cable car! Organic, locally sourced ingredients. Stunning panoramic sea views. Outstanding caprese salad with fresh mozzarella. Rating 4.6⭐ (404 reviews). <strong>⚠️ Closed Wednesdays.</strong></p><div class="rm"><span class="pt">€€ Mid · €20–35pp</span><span style="font-size:12px;color:var(--mu)">📍 Salita Caposcuro 8, Anacapri · 📞 +39 081 837 1441</span></div><div class="lks" style="margin-top:7px"><a href="https://www.columbuscapri.com" class="lk lkr">🌐 Site</a><a href="https://maps.google.com/?q=Columbus+Capri+Salita+Caposcuro+Anacapri" class="lk lkm">📍 Map</a></div></div>
     <div class="rc"><h3>Da Gelsomina — Anacapri</h3><p>Wonderful family trattoria with terrace and views. Excellent vegetarian antipasti, homemade pasta, ravioli caprese (ricotta + marjoram). Best value on the island.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via Migliara 72, Anacapri</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Da+Gelsomina+Anacapri" class="lk lkm">📍 Map</a></div></div>
     <div class="rc"><h3>Lo Sfizio — Anacapri</h3><p>Casual, good-value pizzeria popular with locals. Great vegetarian pizza and pasta — prices far below Capri Town. Near the Monte Solaro chairlift.</p><div class="rm"><span class="pt">€€ Mid</span><span style="font-size:12px;color:var(--mu)">📍 Via Capodimonte 8, Anacapri</span></div><div class="lks" style="margin-top:7px"><a href="https://maps.google.com/?q=Lo+Sfizio+Anacapri" class="lk lkm">📍 Map</a></div></div>
   </div>
@@ -840,6 +849,390 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 
 </div><!-- end content -->
 
+<!-- MAP TAB — outside .content so Leaflet renders properly -->
+<div id="t12" class="pg">
+  <div class="dh">
+    <div class="dlb">Interactive Map</div>
+    <div class="dtt">All Locations — Naples · Capri · Sorrento · Amalfi</div>
+    <div class="dsb">Tap any pin for details · Filter by day using buttons below</div>
+  </div>
+
+  <style>
+    #map{height:420px;width:100%;border-radius:0}
+    .filter-bar{display:flex;flex-wrap:wrap;gap:8px;padding:12px 18px;background:#fff;border-bottom:1px solid var(--bd)}
+    .fbtn{font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;border:1.5px solid var(--bd);background:#fff;color:var(--mu);cursor:pointer;transition:all .2s}
+    .fbtn.active{color:#fff;border-color:transparent}
+    .fbtn.d1.active{background:#C94B2A}
+    .fbtn.d2.active{background:#0F7A5C}
+    .fbtn.d3.active{background:#5340B0}
+    .fbtn.d4.active{background:#1A5FA8}
+    .fbtn.all.active{background:#333}
+    .map-legend{display:flex;flex-wrap:wrap;gap:8px;padding:10px 18px;background:#FDFBF8;border-bottom:1px solid var(--bd)}
+    .leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mu)}
+    .leg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+    .place-list{padding:14px 18px;padding-bottom:40px}
+    .place-group{margin-bottom:18px}
+    .place-group-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin-bottom:8px;display:flex;align-items:center;gap:6px}
+    .place-group-title::before{content:'';display:inline-block;width:10px;height:10px;border-radius:50%}
+    .pg-d1::before{background:#C94B2A}
+    .pg-d2::before{background:#0F7A5C}
+    .pg-d3::before{background:#5340B0}
+    .pg-d4::before{background:#1A5FA8}
+    .place-row{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#fff;border-radius:10px;margin-bottom:6px;border:1px solid var(--bd);cursor:pointer;transition:box-shadow .15s}
+    .place-row:hover{box-shadow:0 2px 10px rgba(0,0,0,0.1)}
+    .place-row-icon{font-size:1.2rem;flex-shrink:0}
+    .place-row-info{flex:1}
+    .place-row-name{font-size:13px;font-weight:600;color:var(--tx)}
+    .place-row-meta{font-size:11px;color:var(--mu);margin-top:1px}
+    .place-row-cost{font-size:11px;font-weight:700;color:var(--a);flex-shrink:0}
+  </style>
+
+  <div class="filter-bar">
+    <button class="fbtn all active" onclick="filterMap('all',this)">🗺️ All</button>
+    <button class="fbtn d1" onclick="filterMap('d1',this)">🏛️ Naples</button>
+    <button class="fbtn d2" onclick="filterMap('d2',this)">🌊 Sorrento+Amalfi</button>
+    <button class="fbtn d3" onclick="filterMap('d3',this)">🎣 Procida</button>
+    <button class="fbtn d4" onclick="filterMap('d4',this)">💎 Capri</button>
+  </div>
+
+  <div id="map"></div>
+
+  <div class="map-legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#C94B2A"></div>Naples</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#0F7A5C"></div>Sorrento · Positano · Amalfi</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#5340B0"></div>Procida</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#1A5FA8"></div>Capri</div>
+    <div class="leg-item"><div class="leg-dot" style="background:#E8A060"></div>🍽️ Restaurant</div>
+  </div>
+
+  <div class="place-list">
+
+    <div class="place-group">
+      <div class="place-group-title pg-d1">Naples — Day 1 (May 15)</div>
+      <div class="place-row" onclick="flyTo(40.8375,14.2544,15)"><div class="place-row-icon">⛴️</div><div class="place-row-info"><div class="place-row-name">Molo Beverello Ferry Port</div><div class="place-row-meta">Ferries to Capri, Procida, Positano</div></div><div class="place-row-cost">Hub</div></div>
+      <div class="place-row" onclick="flyTo(40.8500,14.2602,16)"><div class="place-row-icon">🏘️</div><div class="place-row-info"><div class="place-row-name">Spaccanapoli</div><div class="place-row-meta">Historic street · FREE</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.8358,14.2486,16)"><div class="place-row-icon">🏛️</div><div class="place-row-info"><div class="place-row-name">Piazza del Plebiscito</div><div class="place-row-meta">Grand main square · FREE</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.8283,14.2476,16)"><div class="place-row-icon">🏰</div><div class="place-row-info"><div class="place-row-name">Castel dell'Ovo</div><div class="place-row-meta">Sea castle · FREE</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.8423,14.2293,15)"><div class="place-row-icon">🌅</div><div class="place-row-info"><div class="place-row-name">Castel Sant'Elmo</div><div class="place-row-meta">Best panorama · sunset · €2.50 after 4pm</div></div><div class="place-row-cost">€2.50</div></div>
+      <div class="place-row" onclick="flyTo(40.8508,14.2576,16)"><div class="place-row-icon">🍕</div><div class="place-row-info"><div class="place-row-name">Pizzeria da Michele</div><div class="place-row-meta">Restaurant · Via Cesare Sersale 1</div></div><div class="place-row-cost">€ Budget</div></div>
+      <div class="place-row" onclick="flyTo(40.8503,14.2567,16)"><div class="place-row-icon">🍕</div><div class="place-row-info"><div class="place-row-name">Pizzeria Gino Sorbillo</div><div class="place-row-meta">Restaurant · Via dei Tribunali 32</div></div><div class="place-row-cost">€€</div></div>
+    </div>
+
+    <div class="place-group">
+      <div class="place-group-title pg-d2">Sorrento · Positano · Amalfi — Day 2 (May 16)</div>
+      <div class="place-row" onclick="flyTo(40.6262,14.3757,14)"><div class="place-row-icon">🍋</div><div class="place-row-info"><div class="place-row-name">Sorrento Old Town</div><div class="place-row-meta">Morning stop · limoncello · FREE</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.6266,14.3748,15)"><div class="place-row-icon">🌀</div><div class="place-row-info"><div class="place-row-name">Vallone dei Mulini — Sorrento</div><div class="place-row-meta">Natural gorge · hidden gem</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.6278,14.4870,14)"><div class="place-row-icon">🏖️</div><div class="place-row-info"><div class="place-row-name">Positano — Spiaggia Grande</div><div class="place-row-meta">Iconic cliffside beach</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.6284,14.4868,15)"><div class="place-row-icon">⛪</div><div class="place-row-info"><div class="place-row-name">Chiesa Santa Maria Assunta</div><div class="place-row-meta">Tiled dome church · Positano</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.6303,14.4846,16)"><div class="place-row-icon">🌿</div><div class="place-row-info"><div class="place-row-name">Casa e Bottega ⭐</div><div class="place-row-meta">Restaurant · Viale Pasitea 100 · Mon Closed</div></div><div class="place-row-cost">€€</div></div>
+      <div class="place-row" onclick="flyTo(40.6345,14.6030,14)"><div class="place-row-icon">⛪</div><div class="place-row-info"><div class="place-row-name">Amalfi Cathedral (Duomo)</div><div class="place-row-meta">Arab-Norman cathedral · stunning!</div></div><div class="place-row-cost">Free/€3</div></div>
+      <div class="place-row" onclick="flyTo(40.6439,14.5914,14)"><div class="place-row-icon">🌿</div><div class="place-row-info"><div class="place-row-name">Valle dei Mulini — Amalfi</div><div class="place-row-meta">Waterfall hike · FREE</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.6342,14.6030,15)"><div class="place-row-icon">⭐</div><div class="place-row-info"><div class="place-row-name">SENSI Restaurant ⭐ Michelin</div><div class="place-row-meta">Restaurant · Via Pietro Comite 4 · Tue Closed</div></div><div class="place-row-cost">€€€</div></div>
+    </div>
+
+    <div class="place-group">
+      <div class="place-group-title pg-d3">Procida Island — Day 3 (May 17)</div>
+      <div class="place-row" onclick="flyTo(40.7636,14.0156,14)"><div class="place-row-icon">🏘️</div><div class="place-row-info"><div class="place-row-name">Marina Grande — Procida</div><div class="place-row-meta">Ferry port · pastel houses</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.7614,14.0203,15)"><div class="place-row-icon">📸</div><div class="place-row-info"><div class="place-row-name">Panoramica sulla Corricella</div><div class="place-row-meta">Best viewpoint · 4.9⭐</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.7601,14.0215,16)"><div class="place-row-icon">🎣</div><div class="place-row-info"><div class="place-row-name">Marina Corricella</div><div class="place-row-meta">Colourful fishing village</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.7543,14.0039,14)"><div class="place-row-icon">🏖️</div><div class="place-row-info"><div class="place-row-name">Spiaggia di Ciraccio</div><div class="place-row-meta">Best beach on Procida</div></div><div class="place-row-cost">Free</div></div>
+    </div>
+
+    <div class="place-group">
+      <div class="place-group-title pg-d4">Capri Island — Day 4 (May 18)</div>
+      <div class="place-row" onclick="flyTo(40.5557,14.2421,13)"><div class="place-row-icon">⛴️</div><div class="place-row-info"><div class="place-row-name">Marina Grande — Capri Port</div><div class="place-row-meta">Ferry arrives here</div></div><div class="place-row-cost">—</div></div>
+      <div class="place-row" onclick="flyTo(40.5610,14.2056,14)"><div class="place-row-icon">🔵</div><div class="place-row-info"><div class="place-row-name">Blue Grotto (Grotta Azzurra)</div><div class="place-row-meta">Go first! · Rowboat cave · €18</div></div><div class="place-row-cost">€18</div></div>
+      <div class="place-row" onclick="flyTo(40.5555,14.2215,15)"><div class="place-row-icon">🪑</div><div class="place-row-info"><div class="place-row-name">Monte Solaro Chairlift</div><div class="place-row-meta">Cable car · 360° views · €12</div></div><div class="place-row-cost">€12</div></div>
+      <div class="place-row" onclick="flyTo(40.5513,14.2432,15)"><div class="place-row-icon">☕</div><div class="place-row-info"><div class="place-row-name">La Piazzetta — Capri Town</div><div class="place-row-meta">Iconic tiny square · gelato!</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.5473,14.2432,15)"><div class="place-row-icon">🌺</div><div class="place-row-info"><div class="place-row-name">Gardens of Augustus</div><div class="place-row-meta">Faraglioni view · €1</div></div><div class="place-row-cost">€1</div></div>
+      <div class="place-row" onclick="flyTo(40.5402,14.2529,14)"><div class="place-row-icon">🪨</div><div class="place-row-info"><div class="place-row-name">Faraglioni Rocks</div><div class="place-row-meta">Iconic limestone pillars · FREE · 4.9⭐</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.5451,14.2349,15)"><div class="place-row-icon">🏖️</div><div class="place-row-info"><div class="place-row-name">Marina Piccola Beach</div><div class="place-row-meta">Best swimming beach</div></div><div class="place-row-cost">Free</div></div>
+      <div class="place-row" onclick="flyTo(40.5556,14.2215,16)"><div class="place-row-icon">🌿</div><div class="place-row-info"><div class="place-row-name">Columbus Capri ⭐ (Restaurant)</div><div class="place-row-meta">Salita Caposcuro 8 · Wed Closed</div></div><div class="place-row-cost">€€</div></div>
+      <div class="place-row" onclick="flyTo(40.5513,14.2432,16)"><div class="place-row-icon">🍝</div><div class="place-row-info"><div class="place-row-name">Al Grottino ⭐ (Restaurant)</div><div class="place-row-meta">Via Longano 27, Capri Town · Since 1937</div></div><div class="place-row-cost">€€</div></div>
+    </div>
+
+  </div><!-- end place-list -->
+
+  <style>
+    .jinfo{padding:0 18px 40px}
+    .jcard{background:#fff;border:1px solid var(--bd);border-radius:14px;margin-bottom:14px;overflow:hidden}
+    .jcard-head{padding:12px 15px;display:flex;align-items:center;gap:10px}
+    .jcard-head h3{font-size:14px;font-weight:700;flex:1}
+    .jbadge{font-size:11px;font-weight:600;padding:3px 9px;border-radius:10px;white-space:nowrap}
+    .jcard-body{padding:0 15px 14px;border-top:1px solid var(--bd)}
+    .jstep{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid #F0EDE8}
+    .jstep:last-child{border-bottom:none;padding-bottom:0}
+    .jstep-num{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;margin-top:1px}
+    .jstep-title{font-size:13px;font-weight:600;color:var(--tx);margin-bottom:2px}
+    .jstep-detail{font-size:12px;color:var(--mu);line-height:1.5}
+    .jrow{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F0EDE8;font-size:13px;gap:8px}
+    .jrow:last-child{border-bottom:none}
+    .jrow-k{color:var(--mu);flex-shrink:0;max-width:48%}
+    .jrow-v{font-weight:600;color:var(--tx);text-align:right}
+    .jrow-v a{color:var(--b);text-decoration:none;font-weight:600}
+    .jtag{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:8px;margin:3px 3px 0 0}
+    .jtag-warn{background:#FFF3CD;color:#856404}
+    .jtag-tip{background:#D4EDDA;color:#155724}
+    .jtag-cost{background:#FDF0D8;color:#7A4D08}
+    .jsep{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);padding:10px 0 6px;border-bottom:1px solid #F0EDE8;margin-bottom:4px}
+  </style>
+
+  <div class="jinfo">
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);padding:14px 0 10px">🚀 HOW TO GET THERE — STEP BY STEP</div>
+
+    <div class="jcard">
+      <div class="jcard-head" style="background:#E5EEF9"><span style="font-size:1.4rem">💎</span><h3>Naples → Capri (Day 4 · May 18)</h3><span class="jbadge" style="background:#1A5FA8;color:#fff">~50 min</span></div>
+      <div class="jcard-body">
+        <div class="jsep">📍 Ferry Details</div>
+        <div class="jrow"><span class="jrow-k">From</span><span class="jrow-v">Molo Beverello, Napoli</span></div>
+        <div class="jrow"><span class="jrow-k">To</span><span class="jrow-v">Marina Grande, Capri</span></div>
+        <div class="jrow"><span class="jrow-k">Best companies</span><span class="jrow-v">SNAV · NLG · Caremar</span></div>
+        <div class="jrow"><span class="jrow-k">Type</span><span class="jrow-v">Hydrofoil · 50 min</span></div>
+        <div class="jrow"><span class="jrow-k">Cost one way</span><span class="jrow-v">€22–25 per person</span></div>
+        <div class="jrow"><span class="jrow-k">Book online</span><span class="jrow-v"><a href="https://www.snav.it" target="_blank">snav.it</a> · <a href="https://www.caremar.it" target="_blank">caremar.it</a></span></div>
+        <div class="jsep" style="margin-top:10px">⏰ Timings (Naples → Capri)</div>
+        <div class="jrow"><span class="jrow-k">🌅 First ferry</span><span class="jrow-v">7:05am</span></div>
+        <div class="jrow"><span class="jrow-k">✅ Best departure</span><span class="jrow-v"><strong>8:35am</strong> → Arrive 9:35am</span></div>
+        <div class="jrow"><span class="jrow-k">Other options</span><span class="jrow-v">9:45am · 11:00am · 12:15pm</span></div>
+        <div class="jrow"><span class="jrow-k">Last return</span><span class="jrow-v">~7:30–8:00pm</span></div>
+        <div class="jsep" style="margin-top:10px">🚶 Step by Step</div>
+        <div class="jstep"><div class="jstep-num" style="background:#C94B2A">1</div><div><div class="jstep-title">Hotel → Molo Beverello</div><div class="jstep-detail">Metro Line 1 → <strong>Municipio</strong> station → 5 min walk. Ya taxi ~€8. <strong>7:30am</strong> pahuncho.</div></div></div>
+        <div class="jstep"><div class="jstep-num" style="background:#C94B2A">2</div><div><div class="jstep-title">Ticket lo / online book karo</div><div class="jstep-detail">SNAV ya NLG counter pe. Ya <strong>snav.it</strong> advance book. Summer mein advance better!</div></div></div>
+        <div class="jstep"><div class="jstep-num" style="background:#1A5FA8">3</div><div><div class="jstep-title">8:35am Ferry — Capri!</div><div class="jstep-detail">Hydrofoil 50 min. <strong>Marina Grande</strong> pe aayega. Deck pe baitho!</div></div></div>
+        <div class="jstep" style="border:none"><div class="jstep-num" style="background:#1A5FA8">4</div><div><div class="jstep-title">Marina Grande → Blue Grotto seedha!</div><div class="jstep-detail">Port pe <strong>Motoscafisti</strong> ya <strong>Laser Capri</strong> kiosk. Turant boat lo — ruko mat!</div></div></div>
+        <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px">
+          <span class="jtag jtag-warn">⚠️ Summer mein advance book karo</span>
+          <span class="jtag jtag-tip">✅ 8:35am best</span>
+          <span class="jtag jtag-cost">💰 ~€44–50pp return</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="jcard">
+      <div class="jcard-head" style="background:#E0F2EB"><span style="font-size:1.4rem">🔵</span><h3>Blue Grotto — Andar Kaise Pahunche</h3><span class="jbadge" style="background:#0F7A5C;color:#fff">€18 · Cash only</span></div>
+      <div class="jcard-body">
+        <div style="background:#E5EEF9;border-radius:10px;padding:10px 12px;margin:10px 0 8px">
+          <div style="font-size:12px;font-weight:700;color:#1A5FA8;margin-bottom:6px">Option A — Sea se (Best) 🚤</div>
+          <div class="jstep"><div class="jstep-num" style="background:#1A5FA8;font-size:10px">1</div><div><div class="jstep-title">Marina Grande pe Motoscafisti kiosk</div><div class="jstep-detail">Port pe <strong>Motoscafisti di Capri</strong> ya <strong>Laser Capri</strong> counter. "Blue Grotto only" boat lo.</div></div></div>
+          <div class="jstep"><div class="jstep-num" style="background:#1A5FA8;font-size:10px">2</div><div><div class="jstep-title">Speedboat grotto bahar tak — floating booth pe €18 CASH</div><div class="jstep-detail">Chhoti rowboat mein 2–3 log + boatman transfer.</div></div></div>
+          <div class="jstep" style="border:none"><div class="jstep-num" style="background:#0F7A5C;font-size:10px">3</div><div><div class="jstep-title">Jhuk ke andar — 5 min magical! 🔵</div><div class="jstep-detail"><strong>Lait ho ke jhukna padta hai</strong> — cave entrance chhota hai. Andar neeli glowing roshni, boatman songs gaata hai!</div></div></div>
+        </div>
+        <div style="background:#E8F5E9;border-radius:10px;padding:10px 12px;margin-bottom:8px">
+          <div style="font-size:12px;font-weight:700;color:#2E7D32;margin-bottom:6px">Option B — Zameen se 🚌 Sasta</div>
+          <div class="jstep"><div class="jstep-num" style="background:#2E7D32;font-size:10px">1</div><div><div class="jstep-title">Marina Grande → Bus Anacapri → €2.50</div><div class="jstep-detail">Public bus ~15 min.</div></div></div>
+          <div class="jstep" style="border:none"><div class="jstep-num" style="background:#2E7D32;font-size:10px">2</div><div><div class="jstep-title">Anacapri → Shuttle → Grotta Azzurra</div><div class="jstep-detail">Steps se neeche. Rowboat wahan — €18 same.</div></div></div>
+        </div>
+        <div class="jsep">⚠️ Critical Tips</div>
+        <div class="jrow"><span class="jrow-k">Best time</span><span class="jrow-v">9:00–9:30am — pehle jao!</span></div>
+        <div class="jrow"><span class="jrow-k">10am ke baad</span><span class="jrow-v">1–2 hour line</span></div>
+        <div class="jrow"><span class="jrow-k">Ticket</span><span class="jrow-v">€18 CASH — wahan pe milti hai</span></div>
+        <div class="jrow"><span class="jrow-k">Pre-book?</span><span class="jrow-v">❌ Nahi — only on spot</span></div>
+        <div class="jrow"><span class="jrow-k">Andar time</span><span class="jrow-v">~5 minutes</span></div>
+        <div class="jrow"><span class="jrow-k">Band kab</span><span class="jrow-v">Rough sea / high tide</span></div>
+        <div style="margin-top:8px;display:flex;flex-wrap:wrap;gap:4px">
+          <span class="jtag jtag-warn">⚠️ Cash zaroori</span>
+          <span class="jtag jtag-warn">⚠️ Band ho sakti hai</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="jcard">
+      <div class="jcard-head" style="background:#E5EEF9"><span style="font-size:1.4rem">🪑</span><h3>Blue Grotto ke baad — Poora Capri Din</h3><span class="jbadge" style="background:#1A5FA8;color:#fff">Full Day</span></div>
+      <div class="jcard-body">
+        <div class="jrow"><span class="jrow-k">11:00am</span><span class="jrow-v">Bus → Anacapri (€2.50)</span></div>
+        <div class="jrow"><span class="jrow-k">11:30am</span><span class="jrow-v">Monte Solaro Chairlift 🪑 €12</span></div>
+        <div class="jrow"><span class="jrow-k">12:30pm</span><span class="jrow-v">Lunch: Columbus Capri ⭐ (Wed ❌)</span></div>
+        <div class="jrow"><span class="jrow-k">2:00pm</span><span class="jrow-v">Gardens of Augustus €1</span></div>
+        <div class="jrow"><span class="jrow-k">3:00pm</span><span class="jrow-v">Faraglioni + Piazzetta (FREE)</span></div>
+        <div class="jrow"><span class="jrow-k">4:30pm</span><span class="jrow-v">Marina Piccola Beach (FREE)</span></div>
+        <div class="jrow"><span class="jrow-k">6:30pm</span><span class="jrow-v">Dinner: Al Grottino ⭐ Via Longano 27</span></div>
+        <div class="jrow"><span class="jrow-k">7:30pm</span><span class="jrow-v">Ferry wapas Naples (18:10 / 19:10)</span></div>
+      </div>
+    </div>
+
+    <div class="jcard">
+      <div class="jcard-head" style="background:#E0F2EB"><span style="font-size:1.4rem">🌊</span><h3>Naples → Sorrento → Amalfi Coast (Day 2)</h3><span class="jbadge" style="background:#0F7A5C;color:#fff">Full Loop</span></div>
+      <div class="jcard-body">
+        <div class="jsep">🚆 Naples → Sorrento (Train)</div>
+        <div class="jrow"><span class="jrow-k">Train</span><span class="jrow-v">Circumvesuviana (EAV)</span></div>
+        <div class="jrow"><span class="jrow-k">From</span><span class="jrow-v">Napoli Centrale lower level</span></div>
+        <div class="jrow"><span class="jrow-k">Depart best</span><span class="jrow-v"><strong>7:30am</strong> · every 30 min</span></div>
+        <div class="jrow"><span class="jrow-k">Journey</span><span class="jrow-v">~1 hr 10 min · €3.50</span></div>
+        <div class="jrow"><span class="jrow-k">Info</span><span class="jrow-v"><a href="https://www.eavsrl.it" target="_blank">eavsrl.it</a></span></div>
+        <div style="margin-top:6px"><span class="jtag jtag-warn">⚠️ Pickpocket train — front pocket mein rakho!</span></div>
+        <div class="jsep" style="margin-top:10px">⛴️ Ferry Hops</div>
+        <div class="jrow"><span class="jrow-k">Sorrento → Positano</span><span class="jrow-v">Ferry · ~40 min · €15–18pp</span></div>
+        <div class="jrow"><span class="jrow-k">Positano → Amalfi</span><span class="jrow-v">Ferry · ~30 min · €10–12pp</span></div>
+        <div class="jrow"><span class="jrow-k">Amalfi → Salerno</span><span class="jrow-v">Ferry · ~75 min · €8pp</span></div>
+        <div class="jrow"><span class="jrow-k">Salerno → Naples</span><span class="jrow-v">Train · ~50 min · €6pp</span></div>
+        <div class="jrow"><span class="jrow-k">Schedules</span><span class="jrow-v"><a href="https://www.positanoferries.it" target="_blank">positanoferries.it</a></span></div>
+        <div class="jsep" style="margin-top:10px">⏰ Timeline</div>
+        <div class="jrow"><span class="jrow-k">7:30am</span><span class="jrow-v">Train Naples → Sorrento</span></div>
+        <div class="jrow"><span class="jrow-k">10:00am</span><span class="jrow-v">Ferry → Positano</span></div>
+        <div class="jrow"><span class="jrow-k">12:00pm</span><span class="jrow-v">Lunch Casa e Bottega ⭐ (Mon ❌)</span></div>
+        <div class="jrow"><span class="jrow-k">1:30pm</span><span class="jrow-v">Ferry → Amalfi</span></div>
+        <div class="jrow"><span class="jrow-k">7:00pm</span><span class="jrow-v">SENSI dinner ⭐ (Tue ❌ · Book!)</span></div>
+        <div class="jrow"><span class="jrow-k">8:30pm</span><span class="jrow-v">Ferry → Salerno → Train home</span></div>
+      </div>
+    </div>
+
+    <div class="jcard">
+      <div class="jcard-head" style="background:#FDF0D8"><span style="font-size:1.4rem">🍽️</span><h3>Vegetarian Restaurants — Quick Ref</h3><span class="jbadge" style="background:#A86A10;color:#fff">All Days</span></div>
+      <div class="jcard-body">
+        <div class="jsep">💎 Capri</div>
+        <div class="jrow"><span class="jrow-k">Al Grottino ⭐</span><span class="jrow-v">Via Longano 27 · €€ · 4.4⭐</span></div>
+        <div class="jrow"><span class="jrow-k">Columbus Capri ⭐</span><span class="jrow-v">Salita Caposcuro 8 · Wed ❌</span></div>
+        <div class="jrow"><span class="jrow-k">Da Gelsomina</span><span class="jrow-v">Via Migliara 72 · Anacapri</span></div>
+        <div class="jsep" style="margin-top:8px">🌊 Positano + Amalfi</div>
+        <div class="jrow"><span class="jrow-k">Casa e Bottega ⭐</span><span class="jrow-v">Viale Pasitea 100 · Mon ❌</span></div>
+        <div class="jrow"><span class="jrow-k">SENSI ⭐ Michelin</span><span class="jrow-v">Via Pietro Comite 4 · Tue ❌</span></div>
+        <div class="jrow"><span class="jrow-k">Trattoria Il Mulino</span><span class="jrow-v">Via delle Cartiere 36 · €€</span></div>
+        <div class="jsep" style="margin-top:8px">🍕 Naples</div>
+        <div class="jrow"><span class="jrow-k">Da Michele</span><span class="jrow-v">Via Cesare Sersale 1 · €</span></div>
+        <div class="jrow"><span class="jrow-k">Gino Sorbillo</span><span class="jrow-v">Via dei Tribunali 32 · €€</span></div>
+        <div style="margin-top:8px;background:#FDF3E3;border-radius:10px;padding:9px 12px;font-size:12px;color:#7A4D08">
+          <strong>🗣️</strong> "Sono vegetariano/a" · "Senza carne, senza pesce" · "È vegetariano?"
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end jinfo -->
+
+</div><!-- end t12 map tab -->
+
+<script>
+var mapInited = false;
+var map, allMarkers = [], markersByGroup = {d1:[],d2:[],d3:[],d4:[]};
+
+// Dynamically load Leaflet only when map tab is clicked
+function loadLeaflet(cb){
+  if(typeof L !== 'undefined'){ cb(); return; }
+  var css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';
+  document.head.appendChild(css);
+  var js = document.createElement('script');
+  js.src = 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';
+  js.onload = cb;
+  js.onerror = function(){
+    var el = document.getElementById('map');
+    if(el) el.innerHTML = '<div style="padding:30px;text-align:center;color:#666;font-size:13px">⚠️ Map load nahi hua.<br>Internet connection check karo aur dobara try karo.</div>';
+  };
+  document.head.appendChild(js);
+}
+
+document.getElementById('r12').addEventListener('change', function(){
+  if(!mapInited){
+    loadLeaflet(function(){
+      initMap();
+      mapInited = true;
+    });
+  } else {
+    setTimeout(function(){ map && map.invalidateSize(); }, 200);
+  }
+});
+
+function mkIcon(color, emoji){
+  return L.divIcon({
+    className:'',
+    html:'<div style="background:'+color+';color:#fff;border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;font-size:15px;border:2px solid rgba(255,255,255,0.9);box-shadow:0 2px 6px rgba(0,0,0,0.3)">'+emoji+'</div>',
+    iconSize:[32,32], iconAnchor:[16,16], popupAnchor:[0,-18]
+  });
+}
+
+function initMap(){
+  map = L.map('map',{zoomControl:true}).setView([40.65, 14.35], 10);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'© OpenStreetMap',maxZoom:18
+  }).addTo(map);
+
+  var places = [
+    // Naples d1 #C94B2A
+    {g:'d1',lat:40.8375,lng:14.2544,e:'⛴️',t:'Molo Beverello Ferry Port',d:'Ferries to Capri, Procida, Positano · 7am–8pm'},
+    {g:'d1',lat:40.8500,lng:14.2602,e:'🏘️',t:'Spaccanapoli',d:'Historic street · FREE'},
+    {g:'d1',lat:40.8358,lng:14.2486,e:'🏛️',t:'Piazza del Plebiscito',d:'Grand main square · FREE'},
+    {g:'d1',lat:40.8283,lng:14.2476,e:'🏰',t:"Castel dell'Ovo",d:'Sea castle · FREE'},
+    {g:'d1',lat:40.8423,lng:14.2293,e:'🌅',t:'Castel Sant\'Elmo',d:'Best panorama in Naples · €2.50 after 4pm'},
+    {g:'d1',lat:40.8508,lng:14.2576,e:'🍕',t:'L\'Antica Pizzeria da Michele',d:'Restaurant · Via Cesare Sersale 1 · €Budget'},
+    {g:'d1',lat:40.8503,lng:14.2567,e:'🍕',t:'Pizzeria Gino Sorbillo',d:'Restaurant · Via dei Tribunali 32 · €€'},
+
+    // Sorrento+Amalfi d2 #0F7A5C
+    {g:'d2',lat:40.6262,lng:14.3757,e:'🍋',t:'Sorrento Old Town',d:'Morning stop · limoncello tasting · FREE'},
+    {g:'d2',lat:40.6266,lng:14.3748,e:'🌀',t:'Vallone dei Mulini — Sorrento',d:'Hidden natural gorge · FREE'},
+    {g:'d2',lat:40.6278,lng:14.4870,e:'🏖️',t:'Positano — Spiaggia Grande',d:'Iconic cliffside beach · FREE'},
+    {g:'d2',lat:40.6284,lng:14.4868,e:'⛪',t:'Chiesa Santa Maria Assunta',d:'Tiled dome church · FREE · 9:30am–8pm'},
+    {g:'d2',lat:40.6303,lng:14.4846,e:'🌿',t:'Casa e Bottega ⭐',d:'Restaurant · Viale Pasitea 100 · MONDAY CLOSED · €€'},
+    {g:'d2',lat:40.6345,lng:14.6030,e:'⛪',t:'Amalfi Cathedral (Duomo)',d:'Arab-Norman cathedral · FREE · Cloister €3'},
+    {g:'d2',lat:40.6439,lng:14.5914,e:'🌿',t:'Valle dei Mulini — Amalfi',d:'Waterfall hike trail · FREE'},
+    {g:'d2',lat:40.6342,lng:14.6030,e:'⭐',t:'SENSI Restaurant ⭐ Michelin',d:'Best vegetarian dinner · TUESDAY CLOSED · €€€ · Reservation required!'},
+    {g:'d2',lat:40.6260,lng:14.3750,e:'🍽️',t:'La Basilica — Sorrento',d:'Restaurant · Piazza Sant\'Antonino 28 · €€'},
+    {g:'d2',lat:40.6275,lng:14.4875,e:'🍽️',t:'Chez Black — Positano',d:'Restaurant · Via del Brigantino 19 · on the beach! · €€€'},
+    {g:'d2',lat:40.6348,lng:14.6025,e:'🍽️',t:'Trattoria Il Mulino — Amalfi',d:'Restaurant · Via delle Cartiere 36 · €€'},
+
+    // Procida d3 #5340B0
+    {g:'d3',lat:40.7636,lng:14.0156,e:'🏘️',t:'Marina Grande — Procida',d:'Ferry port · pastel houses · arrive here'},
+    {g:'d3',lat:40.7614,lng:14.0203,e:'📸',t:'Panoramica sulla Corricella',d:'Best viewpoint on Procida · 4.9⭐ · FREE'},
+    {g:'d3',lat:40.7601,lng:14.0215,e:'🎣',t:'Marina Corricella',d:'Colourful fishing village · FREE'},
+    {g:'d3',lat:40.7543,lng:14.0039,e:'🏖️',t:'Spiaggia di Ciraccio',d:'Best beach on Procida · FREE'},
+    {g:'d3',lat:40.7602,lng:14.0218,e:'🍽️',t:'La Conchiglia',d:'Restaurant · Marina Corricella 33 · tables on water! · €€'},
+    {g:'d3',lat:40.7570,lng:14.0070,e:'🍽️',t:'Ristorante Crescenzo',d:'Restaurant · Via Marina Chiaiolella 33 · €€'},
+
+    // Capri d4 #1A5FA8
+    {g:'d4',lat:40.5557,lng:14.2421,e:'⛴️',t:'Marina Grande — Capri Port',d:'Ferry arrives here · funicular to Capri Town'},
+    {g:'d4',lat:40.5610,lng:14.2056,e:'🔵',t:'Blue Grotto (Grotta Azzurra)',d:'GO FIRST! · Rowboat inside sea cave · €18 · closes in rough seas'},
+    {g:'d4',lat:40.5555,lng:14.2215,e:'🪑',t:'Monte Solaro Chairlift',d:'Cable car to summit · 360° views · €12 return · 9:30am–4pm'},
+    {g:'d4',lat:40.5513,lng:14.2432,e:'☕',t:'La Piazzetta — Capri Town',d:'Iconic glamorous square · gelato · FREE'},
+    {g:'d4',lat:40.5473,lng:14.2432,e:'🌺',t:'Gardens of Augustus',d:'Faraglioni view · €1 · 9am–8pm'},
+    {g:'d4',lat:40.5402,lng:14.2529,e:'🪨',t:'Faraglioni Rocks',d:'Iconic limestone pillars · best photo spot · FREE · 4.9⭐'},
+    {g:'d4',lat:40.5451,lng:14.2349,e:'🏖️',t:'Marina Piccola Beach',d:'Best swimming beach · crystal clear water · FREE'},
+    {g:'d4',lat:40.5556,lng:14.2215,e:'🌿',t:'Columbus Capri ⭐ (Restaurant)',d:'Salita Caposcuro 8 · WEDNESDAY CLOSED · organic · great views · €€'},
+    {g:'d4',lat:40.5514,lng:14.2431,e:'🍝',t:'Al Grottino ⭐ (Restaurant)',d:'Via Longano 27 · since 1937 · homemade pasta · €€'},
+  ];
+
+  var colors = {d1:'#C94B2A', d2:'#0F7A5C', d3:'#5340B0', d4:'#1A5FA8'};
+  var restEmojis = ['🍕','🌿','🍝','⭐','🍽️'];
+
+  places.forEach(function(p){
+    var isResto = restEmojis.indexOf(p.e) >= 0;
+    var col = isResto ? '#E8A060' : colors[p.g];
+    var m = L.marker([p.lat,p.lng],{icon:mkIcon(col,p.e)})
+      .bindPopup('<strong style="font-size:13px">'+p.t+'</strong><br><span style="font-size:12px;color:#666">'+p.d+'</span>',{maxWidth:220});
+    m.addTo(map);
+    allMarkers.push({marker:m, group:p.g});
+    if(!markersByGroup[p.g]) markersByGroup[p.g]=[];
+    markersByGroup[p.g].push(m);
+  });
+}
+
+function filterMap(grp, btn){
+  document.querySelectorAll('.fbtn').forEach(function(b){b.classList.remove('active')});
+  btn.classList.add('active');
+  if(!mapInited) return;
+  allMarkers.forEach(function(item){
+    if(grp==='all' || item.group===grp) item.marker.addTo(map);
+    else map.removeLayer(item.marker);
+  });
+  if(grp!=='all' && markersByGroup[grp] && markersByGroup[grp].length){
+    var bounds = L.featureGroup(markersByGroup[grp]).getBounds();
+    map.fitBounds(bounds.pad(0.25));
+  } else {
+    map.setView([40.65,14.35],10);
+  }
+}
+
+function flyTo(lat,lng,zoom){
+  var r12 = document.getElementById('r12');
+  if(!r12.checked){ r12.click(); }
+  setTimeout(function(){
+    if(!mapInited){initMap();mapInited=true;}
+    map.invalidateSize();
+    map.flyTo([lat,lng],zoom,{duration:1.2});
+  },300);
+}
+</script>
+
+</div><!-- end t12 map tab -->
+
 <div class="footer">
   <strong>Italy Trip · Augsburg → Naples → Bari → Nuremberg · May 14–24, 2026</strong><br>
   Save to phone · Works offline · No JavaScript needed · Links open when you have signal<br>
@@ -856,7 +1249,7 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
     <button class="ai-close" id="aiClose" type="button" aria-label="Close assistant">×</button>
   </div>
   <div class="ai-msgs" id="aiMsgs">
-    <div class="ai-msg bot">Hi. Ask me about Naples, Bari, ferries, trains, food, timings, packing, or your day plan.</div>
+    <div class="ai-msg bot">Hi. Ask me about Naples, Bari, maps, ferries, trains, food, timings, packing, or your day plan.</div>
   </div>
   <form class="ai-form" id="aiForm">
     <input class="ai-input" id="aiInput" type="text" autocomplete="off" placeholder="Ask about your trip..." required>
@@ -881,7 +1274,7 @@ if ('serviceWorker' in navigator) {
   var input = document.getElementById('aiInput');
   var msgs = document.getElementById('aiMsgs');
   var history = [];
-  var pageContext = document.body.innerText.replace(/\s+/g, ' ').slice(0, 9000);
+  var pageContext = document.body.innerText.replace(/\s+/g, ' ').slice(0, 12000);
 
   function addMsg(role, text) {
     var el = document.createElement('div');
@@ -937,7 +1330,7 @@ if ('serviceWorker' in navigator) {
         content: [
           'You are the live assistant embedded in Swadha’s Italy Trip 2026 guide.',
           'Answer in the same language style as the user, including Hinglish when the user writes Hinglish.',
-          'Use the guide context below as the source of truth for itinerary, bookings, links, day plans, places, and tips.',
+          'Use the guide context below as the source of truth for itinerary, bookings, links, maps, day plans, places, and tips.',
           'If live information is requested, use web search when available and still tell the user which official site/app should be checked before payment or travel.',
           'Be specific and practical. Do not say you cannot see the website; the website context is included below.',
           liveHint ? 'Current API data: ' + liveHint : '',
@@ -961,7 +1354,7 @@ if ('serviceWorker' in navigator) {
     var words = question.toLowerCase().split(/[^a-z0-9]+/).filter(function (word) {
       return word.length > 3 && !/what|where|when|kaise|kya|karna|hai|mein|about|tell|plan|day/.test(word);
     });
-    var blocks = Array.prototype.slice.call(document.querySelectorAll('.card,.rc,.tb2,.qref,.al'));
+    var blocks = Array.prototype.slice.call(document.querySelectorAll('.card,.rc,.tb2,.qref,.al,.map-card'));
     var scored = blocks.map(function (block) {
       var text = block.innerText.replace(/\s+/g, ' ').trim();
       var lower = text.toLowerCase();
@@ -976,11 +1369,11 @@ if ('serviceWorker' in navigator) {
     }).slice(0, 3);
 
     if (!scored.length) {
-      return 'I could not find an exact match in the guide. Try asking with place names like Naples, Bari, Capri, Procida, Matera, ferry, train, restaurant, or budget.';
+      return 'I could not find an exact match in the guide. Try asking with place names like Naples, Bari, Capri, Procida, Matera, ferry, train, restaurant, map, or budget.';
     }
 
     return 'Guide se best matches:\n' + scored.map(function (item) {
-      return '- ' + item.text.slice(0, 240) + (item.text.length > 240 ? '...' : '');
+      return '- ' + item.text.slice(0, 260) + (item.text.length > 260 ? '...' : '');
     }).join('\n');
   }
 
