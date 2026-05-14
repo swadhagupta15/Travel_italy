@@ -862,9 +862,10 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
     <input class="ai-input" id="aiInput" type="text" autocomplete="off" placeholder="Ask about your trip..." required>
     <button class="ai-send" type="submit">Send</button>
   </form>
-  <div class="ai-note">Guide search works offline. Weather and currency need internet.</div>
+  <div class="ai-note">AI needs internet and may ask for Puter sign-in. Offline fallback still searches the guide.</div>
 </section>
 
+<script src="https://js.puter.com/v2/"></script>
 <script>
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
@@ -911,6 +912,51 @@ if ('serviceWorker' in navigator) {
     return 'Live EUR to INR rate: 1 EUR ≈ ' + data.rates.INR.toFixed(2) + ' INR. Rate date: ' + data.date + '. Your bank/card may use a slightly different rate.';
   }
 
+  function readPuterResponse(response) {
+    if (typeof response === 'string') return response;
+    if (response && typeof response.text === 'string') return response.text;
+    if (response && response.message && typeof response.message.content === 'string') return response.message.content;
+    if (response && response.content && typeof response.content === 'string') return response.content;
+    return '';
+  }
+
+  async function askPuterAI(question) {
+    if (!window.puter || !puter.ai || !puter.ai.chat) return '';
+
+    var liveIntent = /live|real.?time|today|now|abhi|weather|mausam|open|closed|khula|delay|strike|ferry|train|price|ticket|restaurant|news/i.test(question);
+    var liveHint = '';
+    if (/weather|mausam|temperature|rain|barish/i.test(question)) {
+      liveHint = await getWeather(question).catch(function () { return ''; });
+    } else if (/eur|inr|currency|exchange|rate|rupee|euro/i.test(question)) {
+      liveHint = await getCurrency().catch(function () { return ''; });
+    }
+
+    var messages = [
+      {
+        role: 'system',
+        content: [
+          'You are the live assistant embedded in Swadha’s Italy Trip 2026 guide.',
+          'Answer in the same language style as the user, including Hinglish when the user writes Hinglish.',
+          'Use the guide context below as the source of truth for itinerary, bookings, links, day plans, places, and tips.',
+          'If live information is requested, use web search when available and still tell the user which official site/app should be checked before payment or travel.',
+          'Be specific and practical. Do not say you cannot see the website; the website context is included below.',
+          liveHint ? 'Current API data: ' + liveHint : '',
+          'Guide context: ' + pageContext
+        ].filter(Boolean).join('\n\n')
+      }
+    ].concat(history.slice(-8));
+
+    var options = liveIntent
+      ? { model: 'openai/gpt-5.2-chat', tools: [{ type: 'web_search' }] }
+      : { model: 'gpt-5.4-nano' };
+
+    try {
+      return readPuterResponse(await puter.ai.chat(messages, options));
+    } catch (error) {
+      return readPuterResponse(await puter.ai.chat(messages, { model: 'gpt-5.4-nano' }));
+    }
+  }
+
   function findGuideMatches(question) {
     var words = question.toLowerCase().split(/[^a-z0-9]+/).filter(function (word) {
       return word.length > 3 && !/what|where|when|kaise|kya|karna|hai|mein|about|tell|plan|day/.test(word);
@@ -939,6 +985,8 @@ if ('serviceWorker' in navigator) {
   }
 
   async function answerQuestion(question) {
+    var aiAnswer = await askPuterAI(question).catch(function () { return ''; });
+    if (aiAnswer && !/undefined|\[object Object\]/i.test(aiAnswer)) return aiAnswer;
     if (/weather|mausam|temperature|rain|barish/i.test(question)) return getWeather(question);
     if (/eur|inr|currency|exchange|rate|rupee|euro/i.test(question)) return getCurrency();
     return findGuideMatches(question);
