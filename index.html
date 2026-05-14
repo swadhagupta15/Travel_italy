@@ -157,9 +157,14 @@ input[name="tab"]{display:none;position:absolute;left:-9999px}
 .ai-title{font-size:14px;font-weight:700}.ai-sub{font-size:11px;color:rgba(255,255,255,.68);margin-top:1px}
 .ai-close{width:32px;height:32px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .ai-msgs{flex:1;overflow:auto;background:#F7F4EF;padding:12px;display:flex;flex-direction:column;gap:9px}
-.ai-msg{max-width:86%;padding:9px 11px;border-radius:12px;font-size:13px;line-height:1.45;white-space:pre-wrap}
+.ai-msg{max-width:88%;padding:10px 12px;border-radius:12px;font-size:13px;line-height:1.45;white-space:normal}
 .ai-msg.bot{background:#fff;border:1px solid var(--bd);align-self:flex-start;color:var(--tx)}
 .ai-msg.user{background:#0F7A5C;color:#fff;align-self:flex-end}
+.ai-msg strong{font-weight:800;color:#8B2E14}
+.ai-msg p{margin:0 0 7px}.ai-msg p:last-child{margin-bottom:0}
+.ai-msg ul{margin:4px 0 0 18px;padding:0}.ai-msg li{margin:3px 0}
+.ai-chips{display:flex;gap:6px;flex-wrap:wrap;padding:9px 10px 0;background:#fff;border-top:1px solid var(--bd)}
+.ai-chip{border:1px solid var(--bd);background:#FDFBF8;color:var(--tx);border-radius:16px;padding:6px 10px;font-size:12px;font-weight:700;cursor:pointer}
 .ai-form{display:flex;gap:8px;padding:10px;border-top:1px solid var(--bd);background:#fff}
 .ai-input{flex:1;border:1px solid var(--bd);border-radius:20px;padding:10px 12px;font-size:14px;min-width:0}
 .ai-send{border:0;border-radius:20px;background:#C94B2A;color:#fff;padding:0 15px;font-weight:700;cursor:pointer}
@@ -1249,7 +1254,13 @@ function flyTo(lat,lng,zoom){
     <button class="ai-close" id="aiClose" type="button" aria-label="Close assistant">×</button>
   </div>
   <div class="ai-msgs" id="aiMsgs">
-    <div class="ai-msg bot">Hi. Ask me about Naples, Bari, maps, ferries, trains, food, timings, packing, or your day plan.</div>
+    <div class="ai-msg bot"><p><strong>Hi.</strong> Ask me about Naples, Bari, maps, ferries, trains, food, timings, packing, or your day plan.</p></div>
+  </div>
+  <div class="ai-chips">
+    <button class="ai-chip" type="button" data-q="Today ka short plan batao">Today</button>
+    <button class="ai-chip" type="button" data-q="Nearest food options batao">Food</button>
+    <button class="ai-chip" type="button" data-q="Bari weather">Weather</button>
+    <button class="ai-chip" type="button" data-q="Map kaise use karun?">Map</button>
   </div>
   <form class="ai-form" id="aiForm">
     <input class="ai-input" id="aiInput" type="text" autocomplete="off" placeholder="Ask about your trip..." required>
@@ -1273,13 +1284,44 @@ if ('serviceWorker' in navigator) {
   var form = document.getElementById('aiForm');
   var input = document.getElementById('aiInput');
   var msgs = document.getElementById('aiMsgs');
+  var chips = document.querySelectorAll('.ai-chip');
   var history = [];
   var pageContext = document.body.innerText.replace(/\s+/g, ' ').slice(0, 12000);
+
+  function escapeHTML(text) {
+    return text.replace(/[&<>"']/g, function (char) {
+      return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char];
+    });
+  }
+
+  function formatAnswer(text) {
+    var safe = escapeHTML(String(text || '').trim());
+    safe = safe.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    var lines = safe.split(/\n+/);
+    var html = '';
+    var inList = false;
+    lines.forEach(function (line) {
+      var bullet = line.match(/^\s*[-•]\s+(.+)/);
+      if (bullet) {
+        if (!inList) { html += '<ul>'; inList = true; }
+        html += '<li>' + bullet[1] + '</li>';
+      } else {
+        if (inList) { html += '</ul>'; inList = false; }
+        if (line.trim()) html += '<p>' + line + '</p>';
+      }
+    });
+    if (inList) html += '</ul>';
+    return html || '<p>I could not find that.</p>';
+  }
 
   function addMsg(role, text) {
     var el = document.createElement('div');
     el.className = 'ai-msg ' + (role === 'user' ? 'user' : 'bot');
-    el.textContent = text;
+    if (role === 'bot') {
+      el.innerHTML = formatAnswer(text);
+    } else {
+      el.textContent = text;
+    }
     msgs.appendChild(el);
     msgs.scrollTop = msgs.scrollHeight;
     return el;
@@ -1297,12 +1339,12 @@ if ('serviceWorker' in navigator) {
     var url = 'https://api.open-meteo.com/v1/forecast?' + coords + '&current=temperature_2m,weather_code,wind_speed_10m&timezone=Europe%2FRome';
     var data = await fetch(url).then(function (r) { return r.json(); });
     var current = data.current || {};
-    return 'Live weather for ' + place + ': ' + current.temperature_2m + '°C, wind ' + current.wind_speed_10m + ' km/h. Weather code: ' + current.weather_code + '. For rain/hourly details, check a weather app before leaving.';
+    return '**' + place + ' weather:** ' + current.temperature_2m + '°C, wind ' + current.wind_speed_10m + ' km/h.\n- For rain/hourly details, **verify** in a weather app before leaving.';
   }
 
   async function getCurrency() {
     var data = await fetch('https://api.frankfurter.app/latest?from=EUR&to=INR').then(function (r) { return r.json(); });
-    return 'Live EUR to INR rate: 1 EUR ≈ ' + data.rates.INR.toFixed(2) + ' INR. Rate date: ' + data.date + '. Your bank/card may use a slightly different rate.';
+    return '**EUR → INR:** 1 EUR ≈ ' + data.rates.INR.toFixed(2) + ' INR.\n- Rate date: ' + data.date + '\n- Your bank/card may use a slightly different rate.';
   }
 
   function readPuterResponse(response) {
@@ -1330,8 +1372,12 @@ if ('serviceWorker' in navigator) {
         content: [
           'You are the live assistant embedded in Swadha’s Italy Trip 2026 guide.',
           'Answer in the same language style as the user, including Hinglish when the user writes Hinglish.',
+          'Default to a short ChatGPT-style answer: 2 to 4 bullets maximum, under 80 words, with **bold** for key actions.',
+          'Give longer detail only when the user explicitly asks for details, full plan, itinerary, compare, or explain.',
+          'Never dump too many lines. Start with the direct answer first.',
           'Use the guide context below as the source of truth for itinerary, bookings, links, maps, day plans, places, and tips.',
           'If live information is requested, use web search when available and still tell the user which official site/app should be checked before payment or travel.',
+          'For uncertain live data, say **verify** and name the official source. Do not invent exact delays, opening status, or prices.',
           'Be specific and practical. Do not say you cannot see the website; the website context is included below.',
           liveHint ? 'Current API data: ' + liveHint : '',
           'Guide context: ' + pageContext
@@ -1344,9 +1390,17 @@ if ('serviceWorker' in navigator) {
       : { model: 'gpt-5.4-nano' };
 
     try {
-      return readPuterResponse(await puter.ai.chat(messages, options));
+      var primary = puter.ai.chat(messages, options);
+      var timeout = new Promise(function (_, reject) {
+        setTimeout(function () { reject(new Error('AI timeout')); }, 12000);
+      });
+      return readPuterResponse(await Promise.race([primary, timeout]));
     } catch (error) {
-      return readPuterResponse(await puter.ai.chat(messages, { model: 'gpt-5.4-nano' }));
+      var fallback = puter.ai.chat(messages, { model: 'gpt-5.4-nano' });
+      var fallbackTimeout = new Promise(function (_, reject) {
+        setTimeout(function () { reject(new Error('AI timeout')); }, 12000);
+      });
+      return readPuterResponse(await Promise.race([fallback, fallbackTimeout]));
     }
   }
 
@@ -1369,24 +1423,32 @@ if ('serviceWorker' in navigator) {
     }).slice(0, 3);
 
     if (!scored.length) {
-      return 'I could not find an exact match in the guide. Try asking with place names like Naples, Bari, Capri, Procida, Matera, ferry, train, restaurant, map, or budget.';
+      return '**Not found in guide.** Try a place/topic like Naples, Bari, Capri, Procida, Matera, ferry, train, restaurant, map, or budget.';
     }
 
-    return 'Guide se best matches:\n' + scored.map(function (item) {
-      return '- ' + item.text.slice(0, 260) + (item.text.length > 260 ? '...' : '');
+    return '**Guide matches:**\n' + scored.map(function (item) {
+      return '- ' + item.text.slice(0, 170) + (item.text.length > 170 ? '...' : '');
     }).join('\n');
   }
 
   async function answerQuestion(question) {
-    var aiAnswer = await askPuterAI(question).catch(function () { return ''; });
-    if (aiAnswer && !/undefined|\[object Object\]/i.test(aiAnswer)) return aiAnswer;
     if (/weather|mausam|temperature|rain|barish/i.test(question)) return getWeather(question);
     if (/eur|inr|currency|exchange|rate|rupee|euro/i.test(question)) return getCurrency();
+    var aiAnswer = await askPuterAI(question).catch(function () { return ''; });
+    if (aiAnswer && !/undefined|\[object Object\]/i.test(aiAnswer)) return aiAnswer;
     return findGuideMatches(question);
   }
 
   toggle.addEventListener('click', function () { setOpen(!panel.classList.contains('open')); });
   close.addEventListener('click', function () { setOpen(false); });
+
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      setOpen(true);
+      input.value = chip.getAttribute('data-q') || '';
+      form.dispatchEvent(new Event('submit', { cancelable: true }));
+    });
+  });
 
   form.addEventListener('submit', async function (event) {
     event.preventDefault();
@@ -1395,14 +1457,14 @@ if ('serviceWorker' in navigator) {
     input.value = '';
     addMsg('user', question);
     history.push({ role: 'user', content: question });
-    var thinking = addMsg('bot', 'Checking your guide...');
+    var thinking = addMsg('bot', '**Checking...**');
 
     try {
       var answer = await answerQuestion(question);
-      thinking.textContent = answer || 'I could not find that in the guide. Try a place or topic name.';
+      thinking.innerHTML = formatAnswer(answer || '**Not found.** Try a place or topic name.');
       history.push({ role: 'assistant', content: thinking.textContent });
     } catch (error) {
-      thinking.textContent = 'Live info is not reachable right now. The offline guide still works; try again when internet is stable.';
+      thinking.innerHTML = formatAnswer('**Live info unavailable.** Offline guide search still works. Try again when internet is stable.');
     }
   });
 })();
